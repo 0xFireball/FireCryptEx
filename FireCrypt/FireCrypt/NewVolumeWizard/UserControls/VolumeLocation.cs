@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FireCrypt.NewVolumeWizard.UserControls
 {
@@ -25,8 +26,32 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		}
 		void Button2Click(object sender, EventArgs e)
 		{
+			//create new
 			SaveFileDialog sfd = new SaveFileDialog();
 			sfd.Filter = "FireCrypt Volumes (*.firecrypt)|*.firecrypt|All files (*.*)|*.*"  ;
+			DialogResult dr = sfd.ShowDialog();
+			if (dr == DialogResult.OK)
+			{
+				VolumeFileLocation = sfd.FileName;
+				label4.Text = VolumeFileLocation;
+				string fnwoext = Path.GetFileNameWithoutExtension(VolumeFileLocation); //filenamewithout extension
+				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+				Directory.CreateDirectory(Path.GetDirectoryName(volN));
+				
+			}
+		}
+		void Button1Click(object sender, EventArgs e)
+		{
+			//Choose existing
+			OpenFileDialog sfd = new OpenFileDialog();
+			sfd.Multiselect = false;
+			sfd.Filter = "FireCrypt Volumes (*.firecrypt)|*.firecrypt|All files (*.*)|*.*"  ;
+			DialogResult dr = sfd.ShowDialog();
+			if (dr == DialogResult.OK)
+			{
+				VolumeFileLocation = sfd.FileName;
+				label4.Text = VolumeFileLocation;
+			}
 		}
 	}
 }
