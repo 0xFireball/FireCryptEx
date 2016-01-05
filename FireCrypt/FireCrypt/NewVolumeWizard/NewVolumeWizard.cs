@@ -36,12 +36,21 @@ namespace FireCrypt.Wizards
 		}
 		string VolumeName;
 		string Password;
-		void OnNextPage1Click(object sender, EventArgs e, WelcomePage wp)
+		void OnNextPage1Click(object sender, EventArgs e1, WelcomePage wp)
 		{
 			VolumeName = wp.VolumeName;
 			Password = wp.Password;
-			VolumeLocation vlp = new VolumeLocation();
+			VolumeLocation vlp = new VolumeLocation(VolumeName);
 			ShowContent(vlp);
+			panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);
 		}
+		public FireCryptVolume FinalVolume;
+		void OnNextPage2Click(object sender, EventArgs e1, VolumeLocation vlp)
+		{
+			FireCryptVolume fcv = vlp.FinalVolume;
+			this.FinalVolume = fcv;
+			this.Close();
+		}
+		
 	}
 }

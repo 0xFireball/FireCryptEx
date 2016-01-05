@@ -11,9 +11,9 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Label label4;
 		
 		/// <summary>
 		/// Disposes resources used by the control.
@@ -40,13 +40,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.button2 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// finishBtn
 			// 
+			this.finishBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.finishBtn.Location = new System.Drawing.Point(403, 282);
 			this.finishBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.finishBtn.Name = "finishBtn";
@@ -54,6 +55,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.finishBtn.TabIndex = 0;
 			this.finishBtn.Text = "Finish";
 			this.finishBtn.UseVisualStyleBackColor = true;
+			this.finishBtn.Click += new System.EventHandler(this.FinishBtnClick);
 			// 
 			// button2
 			// 
@@ -81,6 +83,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Create New";
 			// 
+			// label4
+			// 
+			this.label4.Location = new System.Drawing.Point(23, 57);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(451, 23);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "...";
+			// 
 			// label3
 			// 
 			this.label3.Location = new System.Drawing.Point(23, 183);
@@ -98,14 +108,6 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.button1.Text = "Browse";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.Button1Click);
-			// 
-			// label4
-			// 
-			this.label4.Location = new System.Drawing.Point(23, 57);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(451, 23);
-			this.label4.TabIndex = 6;
-			this.label4.Text = "...";
 			// 
 			// VolumeLocation
 			// 

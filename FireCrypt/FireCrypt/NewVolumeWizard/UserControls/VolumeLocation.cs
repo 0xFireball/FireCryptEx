@@ -13,8 +13,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 	public partial class VolumeLocation : UserControl
 	{
 		public string VolumeFileLocation;
-		public VolumeLocation()
+		bool ValidVolume;
+		string VolumeName;
+		
+		public FireCryptVolume FinalVolume;
+		
+		public VolumeLocation(string volumeName)
 		{
+			VolumeName = volumeName;
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -36,8 +42,20 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 				label4.Text = VolumeFileLocation;
 				string fnwoext = Path.GetFileNameWithoutExtension(VolumeFileLocation); //filenamewithout extension
 				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
-				Directory.CreateDirectory(Path.GetDirectoryName(volN));
-				
+				FireCryptVolume.CreateNewVolume(VolumeFileLocation, VolumeName);
+				try
+				{
+					FireCryptVolume fcv  = new FireCryptVolume(VolumeFileLocation);
+					ValidVolume = true;
+					finishBtn.Enabled = ValidVolume;
+					FinalVolume = fcv;
+				}
+				catch
+				{
+					ValidVolume = false;
+					finishBtn.Enabled = ValidVolume;
+					MessageBox.Show("Volume creation error.");
+				}
 			}
 		}
 		void Button1Click(object sender, EventArgs e)
@@ -49,9 +67,31 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			DialogResult dr = sfd.ShowDialog();
 			if (dr == DialogResult.OK)
 			{
-				VolumeFileLocation = sfd.FileName;
+				string tvfl = sfd.FileName; //test volume file location
+				if (tvfl.EndsWith(".firecrypt"))
+				{
+					tvfl = Path.GetDirectoryName(tvfl);
+				}
+				VolumeFileLocation = tvfl;
 				label4.Text = VolumeFileLocation;
+				try
+				{
+					FireCryptVolume fcv  = new FireCryptVolume(VolumeFileLocation);
+					ValidVolume = true;
+					finishBtn.Enabled = ValidVolume;
+					FinalVolume = fcv;
+				}
+				catch
+				{
+					ValidVolume = false;
+					finishBtn.Enabled = ValidVolume;
+					MessageBox.Show("Invalid Volume selected.");
+				}
 			}
+		}
+		void FinishBtnClick(object sender, EventArgs e)
+		{
+			
 		}
 	}
 }

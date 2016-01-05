@@ -12,6 +12,7 @@ namespace FireCrypt
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		FireCryptVolume currentVolume;
 		public MainForm()
 		{
 			//
@@ -45,7 +46,42 @@ namespace FireCrypt
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
-			new FireCrypt.Wizards.NewVolumeWizard().ShowDialog();
+			var nvw = new FireCrypt.Wizards.NewVolumeWizard();
+			nvw.ShowDialog();
+			FireCryptVolume nv = nvw.FinalVolume;
+			cryptList.Items.Add(new CryptListItem(nv));
+		}
+		void Button5Click(object sender, EventArgs e)
+		{
+			textBox1.Text = Clipboard.GetText();
+		}
+		void CryptListSelectedIndexChanged(object sender, EventArgs e)
+		{
+			CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
+			currentVolume = listItem.CryptVolume;
+			label4.Text = currentVolume.Label;
+		}
+	}
+	class CryptListItem
+	{
+		private FireCryptVolume _internalVolume;
+		
+		public FireCryptVolume CryptVolume
+		{
+			get
+			{
+				return _internalVolume;
+			}
+		}
+		
+		public CryptListItem(FireCryptVolume volume)
+		{
+			_internalVolume = volume;
+		}
+		
+		public override string ToString()
+		{
+			return _internalVolume.Label;
 		}
 	}
 }

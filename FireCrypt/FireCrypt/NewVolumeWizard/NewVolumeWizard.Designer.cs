@@ -38,17 +38,19 @@ namespace FireCrypt.Wizards
 			// 
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(551, 345);
+			this.panel1.Size = new System.Drawing.Size(825, 516);
 			this.panel1.TabIndex = 0;
 			// 
 			// NewVolumeWizard
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(551, 345);
+			this.ClientSize = new System.Drawing.Size(825, 516);
 			this.Controls.Add(this.panel1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.Name = "NewVolumeWizard";
 			this.Text = "New Volume";
 			this.Load += new System.EventHandler(this.NewVolumeWizardLoad);
