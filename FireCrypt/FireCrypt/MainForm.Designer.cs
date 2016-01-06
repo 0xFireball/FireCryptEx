@@ -22,6 +22,7 @@ namespace FireCrypt
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.CheckBox checkBox1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -61,6 +62,7 @@ namespace FireCrypt
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -199,11 +201,21 @@ namespace FireCrypt
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
+			// checkBox1
+			// 
+			this.checkBox1.Location = new System.Drawing.Point(298, 150);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(320, 24);
+			this.checkBox1.TabIndex = 15;
+			this.checkBox1.Text = "Map volume as network drive";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 409);
+			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);

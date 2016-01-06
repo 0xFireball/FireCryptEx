@@ -128,12 +128,14 @@ namespace FireCrypt
 				string pass = textBox1.Text;
 				try
 				{
-					currentVolume.NetworkDriveMap.UnMapDrive();
+					if (currentVolume.NetworkDriveMap != null)
+						currentVolume.NetworkDriveMap.UnMapDrive();
 				}
 				catch (System.ComponentModel.Win32Exception)
 				{
 					MessageBox.Show("Could not unmap drive. You can do this manually by right-clicking the drive in Explorer and selecting 'Disconnect'.");
 				}
+				currentVolume.NetworkDriveMap = null;
 				currentVolume.LockVolume(pass);
 				label5.Text = "Successfully Locked.";
 				UpdateCurrentItem();
@@ -141,7 +143,7 @@ namespace FireCrypt
 			catch (Exception e)
 			{
 				label5.Text = "Drive lock error.";
-				MessageBox.Show(else.ToString());
+				MessageBox.Show(e.ToString());
 			}
 		}
 		void TryUnlockVolume()
@@ -152,16 +154,23 @@ namespace FireCrypt
 				string pass = textBox1.Text;
 				currentVolume.UnlockVolume(pass);
 				label5.Text = "Successfully Unlocked.";
-				currentVolume.NetworkDriveMap = new NetworkDrive();
-				currentVolume.NetworkDriveMap.ShareName = NetworkDrive.ConvertToUNCPath(currentVolume.UnlockPath);
-				string mdl = GetFreeDriveLetters()[0]+":"; //map drive letter
-				currentVolume.NetworkDriveMap.LocalDrive = mdl;
-				try
+				if (checkBox1.Checked)
 				{
-					currentVolume.NetworkDriveMap.MapDrive();
-					System.Diagnostics.Process.Start(mdl);
+					currentVolume.NetworkDriveMap = new NetworkDrive();
+					currentVolume.NetworkDriveMap.ShareName = NetworkDrive.ConvertToUNCPath(currentVolume.UnlockPath);
+					string mdl = GetFreeDriveLetters()[0]+":"; //map drive letter
+					currentVolume.NetworkDriveMap.LocalDrive = mdl;
+					try
+					{
+						currentVolume.NetworkDriveMap.MapDrive();
+						System.Diagnostics.Process.Start(mdl);
+					}
+					catch (System.ComponentModel.Win32Exception w3e)
+					{
+						MessageBox.Show(w3e.ToString());
+					}
 				}
-				catch (System.ComponentModel.Win32Exception)
+				else
 				{
 					System.Diagnostics.Process.Start(currentVolume.UnlockPath);
 				}
