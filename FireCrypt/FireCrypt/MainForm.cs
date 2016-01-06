@@ -84,17 +84,19 @@ namespace FireCrypt
 		{
 			if (currentVolume.Unlocked)
 			{
-				await Task.Run(()=>TryUnlockVolume());
-				//TryUnlockVolume();
+				//await Task.Run(()=>TryUnlockVolume());
+				TryUnlockVolume();
 			}
 			else
 			{
-				await Task.Run(()=>TryLockVolume());
+				//await Task.Run(()=>TryLockVolume());
+				TryLockVolume();
 			}
 		}
 		void TryLockVolume()
 		{
-			currentVolume.LockVolume();
+			string pass = textBox1.Text;
+			currentVolume.LockVolume(pass);
 			label5.Text = "Successfully Locked.";
 		}
 		void TryUnlockVolume()
