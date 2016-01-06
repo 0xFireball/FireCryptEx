@@ -34,9 +34,6 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LibPowerCrypt4">
-      <HintPath>..\..\..\..\..\Programs\C#\ExaPhaser\OmniBean\PowerCrypt4\v2.3\PowerCrypt4\PowerCrypt4\bin\Release\LibPowerCrypt4.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -115,6 +112,12 @@
   <ItemGroup>
     <Folder Include="NewVolumeWizard" />
     <Folder Include="NewVolumeWizard\UserControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibPowerCrypt4\LibPowerCrypt4.csproj">
+      <Project>{027DD64A-53EC-4AB3-BCC8-3F5C210CDCDF}</Project>
+      <Name>LibPowerCrypt4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
