@@ -158,7 +158,8 @@ namespace FireCrypt
 				{
 					currentVolume.NetworkDriveMap = new NetworkDrive();
 					currentVolume.NetworkDriveMap.ShareName = NetworkDrive.ConvertToUNCPath(currentVolume.UnlockPath);
-					string mdl = GetFreeDriveLetters()[0]+":"; //map drive letter
+					//string mdl = GetFreeDriveLetters()[0]+":"; //map drive letter
+					string mdl = freeDriveLetters[comboBox1.SelectedIndex]+":"; //map drive letter
 					currentVolume.NetworkDriveMap.LocalDrive = mdl;
 					try
 					{
@@ -292,6 +293,16 @@ namespace FireCrypt
 		static bool IsMicrosoftCLR()
 		{
 			return (Type.GetType ("Mono.Runtime") == null);
+		}
+		List<string> freeDriveLetters = new List<string>();
+		void CheckBox1CheckedChanged(object sender, EventArgs e)
+		{
+			comboBox1.Enabled = checkBox1.Enabled;
+			if (comboBox1.Enabled)
+			{
+				freeDriveLetters = GetFreeDriveLetters().Select(c => c.ToString()).ToList();
+				comboBox1.Items.AddRange(freeDriveLetters.ToArray());
+			}
 		}
 	}
 	class CryptListItem

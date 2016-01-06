@@ -24,6 +24,7 @@ namespace FireCrypt
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.ComboBox comboBox1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -65,16 +66,16 @@ namespace FireCrypt
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cryptList
 			// 
 			this.cryptList.FormattingEnabled = true;
-			this.cryptList.ItemHeight = 19;
 			this.cryptList.Location = new System.Drawing.Point(13, 13);
 			this.cryptList.Name = "cryptList";
-			this.cryptList.Size = new System.Drawing.Size(163, 346);
+			this.cryptList.Size = new System.Drawing.Size(163, 342);
 			this.cryptList.TabIndex = 0;
 			this.cryptList.SelectedIndexChanged += new System.EventHandler(this.CryptListSelectedIndexChanged);
 			// 
@@ -112,7 +113,7 @@ namespace FireCrypt
 			this.textBox1.Location = new System.Drawing.Point(298, 78);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.PasswordChar = '•';
-			this.textBox1.Size = new System.Drawing.Size(320, 26);
+			this.textBox1.Size = new System.Drawing.Size(320, 22);
 			this.textBox1.TabIndex = 5;
 			// 
 			// label3
@@ -194,12 +195,12 @@ namespace FireCrypt
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.exitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(109, 30);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -211,6 +212,7 @@ namespace FireCrypt
 			this.checkBox1.TabIndex = 15;
 			this.checkBox1.Text = "Map volume as network drive";
 			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
 			// 
 			// label6
 			// 
@@ -221,11 +223,21 @@ namespace FireCrypt
 			this.label6.Text = "FireCrypt is free encryption software by 0xFireball. Start by adding a new volume" +
 	"";
 			// 
+			// comboBox1
+			// 
+			this.comboBox1.Enabled = false;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(485, 152);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(65, 21);
+			this.comboBox1.TabIndex = 17;
+			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 409);
+			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label1);
