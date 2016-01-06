@@ -114,6 +114,10 @@ namespace FireCrypt
 			Directory.Delete(unlockName, true);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
 			FileWiper fw = new FileWiper();
+			fw.PassInfoEvent += (e) => {};
+			fw.SectorInfoEvent += (e) => {};
+            fw.WipeDoneEvent += (e) => {};
+            fw.WipeErrorEvent += (e) => {};
 			fw.WipeFile(DecVolumeLocation, 1);
 			File.WriteAllBytes(VolumeLocation, PowerAES.Encrypt(dVolume, key).GetBytes());
 			_unlocked = false;

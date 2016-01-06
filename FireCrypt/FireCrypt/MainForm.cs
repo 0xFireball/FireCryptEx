@@ -60,6 +60,8 @@ namespace FireCrypt
 		
 		void MainFormLoad(object sender, EventArgs e1)
 		{
+			//automatic versioning
+			label1.Text = string.Format("Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 			//Properties.Settings.Default.Reload();
 			string volListJ = Properties.Settings.Default.VolumeList;
 			try
@@ -82,15 +84,15 @@ namespace FireCrypt
 		}
 		async void Button3Click(object sender, EventArgs e)
 		{
-			if (currentVolume.Unlocked)
+			if (!currentVolume.Unlocked)
 			{
-				//await Task.Run(()=>TryUnlockVolume());
-				TryUnlockVolume();
+				await Task.Run(()=>TryUnlockVolume());
+				//TryUnlockVolume();
 			}
 			else
 			{
-				//await Task.Run(()=>TryLockVolume());
-				TryLockVolume();
+				await Task.Run(()=>TryLockVolume());
+				//TryLockVolume();
 			}
 		}
 		void TryLockVolume()
@@ -98,6 +100,7 @@ namespace FireCrypt
 			string pass = textBox1.Text;
 			currentVolume.LockVolume(pass);
 			label5.Text = "Successfully Locked.";
+			UpdateCurrentItem();
 		}
 		void TryUnlockVolume()
 		{

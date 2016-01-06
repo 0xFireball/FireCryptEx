@@ -10,7 +10,6 @@ namespace FireCrypt
 		private System.Windows.Forms.ListBox cryptList;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label3;
@@ -20,6 +19,7 @@ namespace FireCrypt
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Label label1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -46,7 +46,6 @@ namespace FireCrypt
 			this.cryptList = new System.Windows.Forms.ListBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@ namespace FireCrypt
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -89,22 +89,13 @@ namespace FireCrypt
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(363, 348);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(266, 18);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "FireCrypt - Free Encryption software by 0xFireball.";
-			this.label1.Click += new System.EventHandler(this.Label1Click);
-			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(496, 377);
+			this.label2.Location = new System.Drawing.Point(466, 377);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(133, 23);
+			this.label2.Size = new System.Drawing.Size(163, 23);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "(c) 2015-2016 0xFireball";
+			this.label2.Text = "(c) 2015-2016, 0xFireball";
 			this.label2.Click += new System.EventHandler(this.Label2Click);
 			// 
 			// textBox1
@@ -181,11 +172,20 @@ namespace FireCrypt
 			this.pictureBox1.TabStop = false;
 			this.pictureBox1.Visible = false;
 			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(207, 374);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(231, 23);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "Version [not set]";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 409);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
@@ -195,7 +195,6 @@ namespace FireCrypt
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cryptList);
