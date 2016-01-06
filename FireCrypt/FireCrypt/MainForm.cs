@@ -211,14 +211,7 @@ namespace FireCrypt
 		    Point ptLowerLeft = new Point(0, btnSender.Height);
 		    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);           
 		    newOrExistingCtxM.Show(ptLowerLeft);
-			var nvw = new FireCrypt.Wizards.NewVolumeWizard();
-			nvw.ShowDialog();
-			if (nvw.FinalVolume!=null)
-			{
-				FireCryptVolume nv = nvw.FinalVolume;
-				cryptList.Items.Add(new CryptListItem(nv));
-				SaveCryptList();
-			}
+			
 		}
 		void SaveCryptList()
 		{
@@ -310,6 +303,29 @@ namespace FireCrypt
 				comboBox1.Items.AddRange(freeDriveLetters.ToArray());
 			}
 		}
+		void AddNewToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			var nvw = new FireCrypt.Wizards.NewVolumeWizard(false);
+			nvw.ShowDialog();
+			if (nvw.FinalVolume!=null)
+			{
+				FireCryptVolume nv = nvw.FinalVolume;
+				cryptList.Items.Add(new CryptListItem(nv));
+				SaveCryptList();
+			}
+		}
+		void AddExistingToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			var nvw = new FireCrypt.Wizards.NewVolumeWizard(true);
+			nvw.ShowDialog();
+			if (nvw.FinalVolume!=null)
+			{
+				FireCryptVolume nv = nvw.FinalVolume;
+				cryptList.Items.Add(new CryptListItem(nv));
+				SaveCryptList();
+			}
+		}
+		
 	}
 	class CryptListItem
 	{

@@ -11,8 +11,10 @@ namespace FireCrypt.Wizards
 	/// </summary>
 	public partial class NewVolumeWizard : Form
 	{
-		public NewVolumeWizard()
+		bool existingVolume;
+		public NewVolumeWizard(bool existing)
 		{
+			existingVolume=existing;
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -30,9 +32,18 @@ namespace FireCrypt.Wizards
 		}
 		void NewVolumeWizardLoad(object sender, EventArgs e1)
 		{
-			WelcomePage wp = new WelcomePage();
-			ShowContent(wp);
-			panel1.Controls.Find("nextBtn", true)[0].Click += (s,e)=> OnNextPage1Click(sender, e1, wp);
+			if (!existingVolume)
+			{
+				WelcomePage wp = new WelcomePage();
+				ShowContent(wp);
+				panel1.Controls.Find("nextBtn", true)[0].Click += (s,e)=> OnNextPage1Click(sender, e1, wp);
+			}
+			else
+			{
+				VolumeLocation vlp = new VolumeLocation(VolumeName, Password);
+				ShowContent(vlp);
+				panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);
+			}
 		}
 		string VolumeName;
 		string Password;

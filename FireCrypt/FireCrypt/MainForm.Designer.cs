@@ -252,12 +252,14 @@ namespace FireCrypt
 			this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
 			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.addNewToolStripMenuItem.Text = "Add New";
+			this.addNewToolStripMenuItem.Click += new System.EventHandler(this.AddNewToolStripMenuItemClick);
 			// 
 			// addExistingToolStripMenuItem
 			// 
 			this.addExistingToolStripMenuItem.Name = "addExistingToolStripMenuItem";
 			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.addExistingToolStripMenuItem.Text = "Add Existing";
+			this.addExistingToolStripMenuItem.Click += new System.EventHandler(this.AddExistingToolStripMenuItemClick);
 			// 
 			// MainForm
 			// 
