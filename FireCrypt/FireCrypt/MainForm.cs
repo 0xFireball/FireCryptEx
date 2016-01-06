@@ -82,8 +82,20 @@ namespace FireCrypt
 		}
 		async void Button3Click(object sender, EventArgs e)
 		{
-			//await Task.Run(()=>TryUnlockVolume());
-			TryUnlockVolume();
+			if (currentVolume.Unlocked)
+			{
+				await Task.Run(()=>TryUnlockVolume());
+				//TryUnlockVolume();
+			}
+			else
+			{
+				await Task.Run(()=>TryLockVolume());
+			}
+		}
+		void TryLockVolume()
+		{
+			currentVolume.LockVolume();
+			label5.Text = "Successfully Locked.";
 		}
 		void TryUnlockVolume()
 		{
@@ -113,6 +125,7 @@ namespace FireCrypt
 				label5.Text = "Unknown Decryption Error. Check your password.";
 			}
 			pictureBox1.Visible = false;
+			UpdateCurrentItem();
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -143,14 +156,19 @@ namespace FireCrypt
 		{
 			try
 			{
-				CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
-				currentVolume = listItem.CryptVolume;
-				label4.Text = currentVolume.Label;
+				UpdateCurrentItem();
 			}
 			catch (ArgumentOutOfRangeException)
 			{
 				
 			}
+		}
+		void UpdateCurrentItem()
+		{
+			CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
+			currentVolume = listItem.CryptVolume;
+			label4.Text = currentVolume.Label;
+			button3.Text = currentVolume.Unlocked ? "Lock Vault" : "Unlock Vault";
 		}
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{

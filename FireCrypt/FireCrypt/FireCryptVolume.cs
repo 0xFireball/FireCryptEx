@@ -111,6 +111,7 @@ namespace FireCrypt
 			string unlockName = UnlockLocation+UID;
 			string DecVolumeLocation = unlockName+".dec";
 			ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
+			Directory.Delete(unlockName, true);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
 			FileWiper fw = new FileWiper();
 			fw.WipeFile(DecVolumeLocation, 1);
