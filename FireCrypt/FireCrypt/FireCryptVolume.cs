@@ -79,8 +79,6 @@ namespace FireCrypt
 			string DecVolumeLocation = unlLoc+".dec";
 			ZipFile.CreateFromDirectory(unlLoc, DecVolumeLocation);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
-			FileWiper fw = new FileWiper();
-			fw.WipeFile(DecVolumeLocation, 1);
 			File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
 			string metaS = new JavaScriptSerializer().Serialize(volMeta);
 			File.WriteAllText(vaultL+"\\vault.metadata",metaS);
