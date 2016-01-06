@@ -174,10 +174,23 @@ namespace FireCrypt
 			currentVolume = listItem.CryptVolume;
 			label4.Text = currentVolume.Label;
 			button3.Text = currentVolume.Unlocked ? "Lock Vault" : "Unlock Vault";
+			if (currentVolume.Unlocked)
+			{
+				
+			}
+			else
+			{
+				
+			}
 		}
+		bool forceClose = false;
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			SaveCryptList();
+			e.Cancel = !forceClose;
+			forceClose = false;
+			this.Hide();
+			notifyIcon1.ShowBalloonTip(5000, "FireCrypt", "FireCrypt is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
@@ -190,6 +203,20 @@ namespace FireCrypt
 				string key = System.IO.File.ReadAllText(sfd.FileName);
 				textBox1.Text = key;
 			}
+		}
+		void ExitToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			SaveCryptList();
+			forceClose = true;
+			Application.Exit();
+		}
+		void NotifyIcon1MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			this.Show();
+		}
+		void NotifyIcon1BalloonTipClicked(object sender, EventArgs e)
+		{
+			//this.Show();
 		}
 	}
 	class CryptListItem

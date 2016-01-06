@@ -19,6 +19,9 @@ namespace FireCrypt
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.NotifyIcon notifyIcon1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -41,6 +44,7 @@ namespace FireCrypt
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.cryptList = new System.Windows.Forms.ListBox();
 			this.button1 = new System.Windows.Forms.Button();
@@ -54,6 +58,10 @@ namespace FireCrypt
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
+			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cryptList
@@ -167,6 +175,30 @@ namespace FireCrypt
 			this.label1.TabIndex = 14;
 			this.label1.Text = "Version [not set]";
 			// 
+			// notifyIcon1
+			// 
+			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+			this.notifyIcon1.Text = "FireCrypt";
+			this.notifyIcon1.Visible = true;
+			this.notifyIcon1.BalloonTipClicked += new System.EventHandler(this.NotifyIcon1BalloonTipClicked);
+			this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1MouseDoubleClick);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.exitToolStripMenuItem});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(109, 30);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+			this.exitToolStripMenuItem.Text = "Exit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -190,6 +222,7 @@ namespace FireCrypt
 			this.Text = "FireCrypt";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
 			this.Load += new System.EventHandler(this.MainFormLoad);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
