@@ -5,6 +5,8 @@ using System.IO;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
 using System.IO.Compression;
+using System.Text;
+using System.Globalization;
 
 using FireCrypt.Network;
 using SharpWipe;
@@ -18,12 +20,24 @@ namespace FireCrypt
 	{
 		public static byte[] GetBytes(this string str)
 		{
+			Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+			return iso.GetBytes(str);
+		}
+		
+		public static string GetString(this byte[] bytes)
+		{
+			Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+			return iso.GetString(bytes);
+		}
+		
+		public static byte[] RawGetBytes(this string str)
+		{
 		    byte[] bytes = new byte[str.Length * sizeof(char)];
 		    System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
 		    return bytes;
 		}
 		
-		public static string GetString(this byte[] bytes)
+		public static string RawGetString(this byte[] bytes)
 		{
 		    char[] chars = new char[bytes.Length / sizeof(char)];
 		    System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
@@ -117,6 +131,10 @@ namespace FireCrypt
 		{
 			string unlockName = UnlockLocation+UID;
 			string DecVolumeLocation = unlockName+".dec";
+			if (File.Exists(DecVolumeLocation))
+			{
+				File.Delete(DecVolumeLocation);
+			}
 			ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
 			Directory.Delete(unlockName, true);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
