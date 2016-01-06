@@ -3,7 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+
 using FireCrypt.NewVolumeWizard;
+
 
 namespace FireCrypt
 {
@@ -13,8 +19,11 @@ namespace FireCrypt
 	public partial class MainForm : Form
 	{
 		FireCryptVolume currentVolume;
+		List<string> CryptListItemLocations;
 		public MainForm()
 		{
+			CryptListItemLocations = new List<string>();
+			Form.CheckForIllegalCrossThreadCalls = false;
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -24,32 +33,91 @@ namespace FireCrypt
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
-		void Button2Click(object sender, EventArgs e)
+		async void Button2Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Are you sure you want to remove the selected item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+			DialogResult dr = MessageBox.Show("Are you sure you want to remove the selected item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+			if (dr == DialogResult.Yes)
+			{
+				await Task.Run(()=>RemoveCryptBox());
+			}
+		}
+		void RemoveCryptBox()
+		{
+			try
+			{
+				cryptList.Items.RemoveAt(cryptList.SelectedIndex);
+			}
+			catch
+			{}
+			SaveCryptList();
+			
 		}
 		void Label1Click(object sender, EventArgs e)
 		{
 	
 		}
-		void MainFormLoad(object sender, EventArgs e)
+		
+		void MainFormLoad(object sender, EventArgs e1)
 		{
-	
+			//Properties.Settings.Default.Reload();
+			string volListJ = Properties.Settings.Default.VolumeList;
+			try
+			{
+				CryptListItemLocations = JsonConvert.DeserializeObject<List<string>>(volListJ);
+				foreach (string cli in CryptListItemLocations)
+				{
+					cryptList.Items.Add(new CryptListItem(new FireCryptVolume(cli)));
+				}
+			}
+			catch (Exception e)
+			{
+				
+			}
+			SaveCryptList();
 		}
 		void Label2Click(object sender, EventArgs e)
 		{
-	
+			
 		}
-		void Button3Click(object sender, EventArgs e)
+		async void Button3Click(object sender, EventArgs e)
 		{
-			pictureBox1.Visible = true;
+			await Task.Run(()=>TryUnlockVolume());
+		}
+		void TryUnlockVolume()
+		{
+			//pictureBox1.Visible = true;
+			try
+			{
+				string pass = textBox1.Text;
+				currentVolume.UnlockVolume(pass);
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.ToString());
+				label5.Text = "Unknown Decryption Error. Check your password.";
+			}
+			//pictureBox1.Visible = false;
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
 			var nvw = new FireCrypt.Wizards.NewVolumeWizard();
 			nvw.ShowDialog();
-			FireCryptVolume nv = nvw.FinalVolume;
-			cryptList.Items.Add(new CryptListItem(nv));
+			if (nvw.FinalVolume!=null)
+			{
+				FireCryptVolume nv = nvw.FinalVolume;
+				cryptList.Items.Add(new CryptListItem(nv));
+				SaveCryptList();
+			}
+		}
+		void SaveCryptList()
+		{
+			CryptListItemLocations = new List<string>();
+			foreach (CryptListItem cli in cryptList.Items)
+			{
+				CryptListItemLocations.Add(cli.CryptVolume.RawLocation);
+			}
+			Properties.Settings.Default.VolumeList = JsonConvert.SerializeObject(CryptListItemLocations);
+			Properties.Settings.Default.Save();
 		}
 		void Button5Click(object sender, EventArgs e)
 		{
@@ -57,9 +125,16 @@ namespace FireCrypt
 		}
 		void CryptListSelectedIndexChanged(object sender, EventArgs e)
 		{
-			CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
-			currentVolume = listItem.CryptVolume;
-			label4.Text = currentVolume.Label;
+			try
+			{
+				CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
+				currentVolume = listItem.CryptVolume;
+				label4.Text = currentVolume.Label;
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				
+			}
 		}
 	}
 	class CryptListItem

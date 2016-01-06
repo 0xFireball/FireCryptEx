@@ -15,12 +15,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		public string VolumeFileLocation;
 		bool ValidVolume;
 		string VolumeName;
+		string Password;
 		
 		public FireCryptVolume FinalVolume;
 		
-		public VolumeLocation(string volumeName)
+		public VolumeLocation(string volumeName, string password)
 		{
 			VolumeName = volumeName;
+			Password = password;
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
@@ -42,7 +44,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 				label4.Text = VolumeFileLocation;
 				string fnwoext = Path.GetFileNameWithoutExtension(VolumeFileLocation); //filenamewithout extension
 				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
-				FireCryptVolume.CreateNewVolume(VolumeFileLocation, VolumeName);
+				FireCryptVolume.CreateNewVolume(VolumeFileLocation, VolumeName, Password);
 				try
 				{
 					FireCryptVolume fcv  = new FireCryptVolume(VolumeFileLocation);

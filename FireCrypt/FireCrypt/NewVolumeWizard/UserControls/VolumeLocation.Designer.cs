@@ -48,6 +48,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// finishBtn
 			// 
 			this.finishBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.finishBtn.Enabled = false;
 			this.finishBtn.Location = new System.Drawing.Point(403, 282);
 			this.finishBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.finishBtn.Name = "finishBtn";

@@ -33,6 +33,7 @@ namespace FireCrypt
 	/// </summary>
 	public class FireCryptVolume
 	{
+		public string RawLocation;
 		public string VaultLocation;
 		public string VolumeLocation;
 		public string OpenVaultLocation;
@@ -42,6 +43,7 @@ namespace FireCrypt
 		Dictionary<string,string> MetadataValues = new Dictionary<string, string>();
 		bool _unlocked;
 		string _metadata;
+		string _unlockPath;
 		
 		private static string UnlockLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+"\\FireCrypt\\";
 		
@@ -53,7 +55,15 @@ namespace FireCrypt
 			}
 		}
 		
-		public static void CreateNewVolume(string location, string label)
+		public string UnlockPath
+		{
+			get
+			{
+				return _unlockPath;
+			}
+		}
+		
+		public static void CreateNewVolume(string location, string label, string password)
 		{
 			string fnwoext = Path.GetFileNameWithoutExtension(location); //filenamewithout extension
 			string volN = Path.GetDirectoryName(location)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
@@ -65,39 +75,63 @@ namespace FireCrypt
 			volMeta["Label"] = label;
 			string ed = Path.GetTempPath()+"\\"+Guid.NewGuid();
 			Directory.CreateDirectory(ed);
-			ZipFile.CreateFromDirectory(ed, volN);
+			string unlLoc = ed;
+			string DecVolumeLocation = unlLoc+".dec";
+			ZipFile.CreateFromDirectory(unlLoc, DecVolumeLocation);
+			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
+			FileWiper fw = new FileWiper();
+			fw.WipeFile(DecVolumeLocation, 1);
+			File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
 			string metaS = new JavaScriptSerializer().Serialize(volMeta);
 			File.WriteAllText(vaultL+"\\vault.metadata",metaS);
-			
 		}
 		
 		
 		public void UnlockVolume(string key)
 		{
 			string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
-			string DecVolumeLocation = UnlockLocation+UID+".dec";
+			string unlockName = UnlockLocation+UID;
+			string DecVolumeLocation = unlockName+".dec";
 			File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume,key).GetBytes());
-			ZipFile.ExtractToDirectory(DecVolumeLocation, UnlockLocation+UID);
+			ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);
 			FileWiper fw = new FileWiper();
 			fw.WipeFile(DecVolumeLocation, 1);
 			_unlocked = true;
+			_unlockPath = unlockName;
 		}
 		
 		public void LockVolume(string key)
 		{
-			string DecVolumeLocation = UnlockLocation+UID+".dec";
-			ZipFile.CreateFromDirectory(UnlockLocation+UID+".dec", DecVolumeLocation);
+			string unlockName = UnlockLocation+UID;
+			string DecVolumeLocation = unlockName+".dec";
+			ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
 			FileWiper fw = new FileWiper();
 			fw.WipeFile(DecVolumeLocation, 1);
 			File.WriteAllBytes(VolumeLocation, PowerAES.Encrypt(dVolume, key).GetBytes());
 			_unlocked = false;
+			_unlockPath = null;
 		}
 		
 		public FireCryptVolume(string location)
 		{
-			string fnwoext = Path.GetFileNameWithoutExtension(location); //filenamewithout extension
-			string volN = Path.GetDirectoryName(location)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+			RawLocation = location;
+			string fnwoext = Path.GetFileNameWithoutExtension(RawLocation); //filenamewithout extension
+			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+			VolumeLocation = volN;
+			VaultLocation = Path.GetDirectoryName(volN);
+			_unlocked = Directory.Exists(OpenVaultLocation);
+			_metadata = File.ReadAllText(VaultLocation+"\\vault.metadata");
+			var jss = new JavaScriptSerializer();
+			MetadataValues = jss.Deserialize<Dictionary<string,string>>(_metadata);
+			UID = MetadataValues["UID"];
+			Label = MetadataValues["Label"];
+		}
+		
+		public FireCryptVolume()
+		{
+			string fnwoext = Path.GetFileNameWithoutExtension(RawLocation); //filenamewithout extension
+			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
 			VolumeLocation = volN;
 			VaultLocation = Path.GetDirectoryName(volN);
 			_unlocked = Directory.Exists(OpenVaultLocation);
