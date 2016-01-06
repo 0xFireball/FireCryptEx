@@ -23,6 +23,7 @@ namespace FireCrypt
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.Label label6;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -63,6 +64,7 @@ namespace FireCrypt
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -210,11 +212,21 @@ namespace FireCrypt
 			this.checkBox1.Text = "Map volume as network drive";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(207, 316);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(422, 43);
+			this.label6.TabIndex = 16;
+			this.label6.Text = "FireCrypt is free encryption software by 0xFireball. Start by adding a new volume" +
+	"";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 409);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label5);
