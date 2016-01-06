@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Security.Cryptography;
 
 
 using FireCrypt.NewVolumeWizard;
@@ -81,22 +82,37 @@ namespace FireCrypt
 		}
 		async void Button3Click(object sender, EventArgs e)
 		{
-			await Task.Run(()=>TryUnlockVolume());
+			//await Task.Run(()=>TryUnlockVolume());
+			TryUnlockVolume();
 		}
 		void TryUnlockVolume()
 		{
-			//pictureBox1.Visible = true;
+			pictureBox1.Visible = true;
 			try
 			{
 				string pass = textBox1.Text;
 				currentVolume.UnlockVolume(pass);
+				label5.Text = "Successfully Unlocked.";
+				System.Diagnostics.Process.Start(currentVolume.UnlockPath);
+			}
+			catch (NullReferenceException)
+			{
+				MessageBox.Show("Please select a volume.");
+			}
+			catch (System.IO.InvalidDataException)
+			{
+				label5.Text = "Incorrect Password.";
+			}
+			catch (CryptographicException ce)
+			{
+				label5.Text = "Incorrect Password.";
 			}
 			catch (Exception e)
 			{
 				MessageBox.Show(e.ToString());
 				label5.Text = "Unknown Decryption Error. Check your password.";
 			}
-			//pictureBox1.Visible = false;
+			pictureBox1.Visible = false;
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
@@ -135,6 +151,10 @@ namespace FireCrypt
 			{
 				
 			}
+		}
+		void MainFormFormClosing(object sender, FormClosingEventArgs e)
+		{
+			SaveCryptList();
 		}
 	}
 	class CryptListItem
