@@ -6,9 +6,11 @@ using System.Web.Script.Serialization;
 using System.Collections.Generic;
 using System.IO.Compression;
 
+using FireCrypt.Network;
 using SharpWipe;
 
 using OmniBean.PowerCrypt4;
+
 
 namespace FireCrypt
 {
@@ -38,7 +40,8 @@ namespace FireCrypt
 		public string VolumeLocation;
 		public string OpenVaultLocation;
 		public string UID;
-		public string Label;		
+		public string Label;
+		public NetworkDrive NetworkDriveMap;
 		
 		Dictionary<string,string> MetadataValues = new Dictionary<string, string>();
 		bool _unlocked;
@@ -93,6 +96,10 @@ namespace FireCrypt
 			if (!Directory.Exists(UnlockLocation))
 			{
 				Directory.CreateDirectory(UnlockLocation);
+			}
+			if (Directory.Exists(unlockName))
+			{
+				Directory.Delete(unlockName,true);
 			}
 			File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume,key).GetBytes());
 			ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);

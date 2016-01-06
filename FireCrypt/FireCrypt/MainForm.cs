@@ -1,14 +1,17 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Security.Cryptography;
 
-
+using FireCrypt.Network;
 using FireCrypt.NewVolumeWizard;
 
 
@@ -21,6 +24,7 @@ namespace FireCrypt
 	{
 		FireCryptVolume currentVolume;
 		List<string> CryptListItemLocations;
+		
 		public MainForm()
 		{
 			CryptListItemLocations = new List<string>();
@@ -84,20 +88,43 @@ namespace FireCrypt
 		}
 		async void Button3Click(object sender, EventArgs e)
 		{
-			if (!currentVolume.Unlocked)
+			try
 			{
-				await Task.Run(()=>TryUnlockVolume());
-				//TryUnlockVolume();
+				if (!currentVolume.Unlocked)
+				{
+					//await Task.Run(()=>TryUnlockVolume());
+					TryUnlockVolume();
+				}
+				else
+				{
+					//await Task.Run(()=>TryLockVolume());
+					TryLockVolume();
+				}
 			}
-			else
+			catch (NullReferenceException)
 			{
-				await Task.Run(()=>TryLockVolume());
-				//TryLockVolume();
+				MessageBox.Show("Please select a volume.");
 			}
+		}
+		List<char> GetFreeDriveLetters()
+		{
+			List<char> driveLetters = new List<char>(); // Allocate space for alphabet
+			for (int i = 65; i < 91; i++) // increment from ASCII values for A-Z
+			{
+			   driveLetters.Add(Convert.ToChar(i)); // Add uppercase letters to possible drive letters
+			}
+			
+			foreach (string drive in Directory.GetLogicalDrives())
+			{
+			   driveLetters.Remove(drive[0]); // removed used drive letters from possible drive letters
+			}
+			
+			return driveLetters;
 		}
 		void TryLockVolume()
 		{
 			string pass = textBox1.Text;
+			currentVolume.NetworkDriveMap.UnMapDrive();
 			currentVolume.LockVolume(pass);
 			label5.Text = "Successfully Locked.";
 			UpdateCurrentItem();
@@ -110,11 +137,30 @@ namespace FireCrypt
 				string pass = textBox1.Text;
 				currentVolume.UnlockVolume(pass);
 				label5.Text = "Successfully Unlocked.";
-				System.Diagnostics.Process.Start(currentVolume.UnlockPath);
+				currentVolume.NetworkDriveMap = new NetworkDrive();
+				currentVolume.NetworkDriveMap.ShareName = NetworkDrive.ConvertToUNCPath(currentVolume.UnlockPath);
+				string mdl = GetFreeDriveLetters()[0]+":"; //map drive letter
+				currentVolume.NetworkDriveMap.LocalDrive = mdl;
+				try
+				{
+					currentVolume.NetworkDriveMap.MapDrive();
+					System.Diagnostics.Process.Start(mdl);
+				}
+				catch (System.ComponentModel.Win32Exception)
+				{
+					System.Diagnostics.Process.Start(currentVolume.UnlockPath);
+				}
 			}
-			catch (NullReferenceException)
+			catch (System.Reflection.TargetInvocationException ex)
 			{
-				MessageBox.Show("Please select a volume.");
+				try
+				{
+					throw ex.InnerException;
+				}
+				catch (NullReferenceException)
+				{
+					MessageBox.Show("Please select a volume.");
+				}
 			}
 			catch (System.IO.InvalidDataException)
 			{
@@ -218,6 +264,10 @@ namespace FireCrypt
 		void NotifyIcon1BalloonTipClicked(object sender, EventArgs e)
 		{
 			//this.Show();
+		}
+		static bool IsMicrosoftCLR()
+		{
+			return (Type.GetType ("Mono.Runtime") == null);
 		}
 	}
 	class CryptListItem
