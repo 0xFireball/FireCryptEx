@@ -179,6 +179,18 @@ namespace FireCrypt
 		{
 			SaveCryptList();
 		}
+		void Button4Click(object sender, EventArgs e)
+		{
+			OpenFileDialog sfd = new OpenFileDialog();
+			sfd.Multiselect = false;
+			sfd.Filter = "Key Files (*.key)|*.key|All files (*.*)|*.*"  ;
+			DialogResult dr = sfd.ShowDialog();
+			if (dr == DialogResult.OK)
+			{
+				string key = System.IO.File.ReadAllText(sfd.FileName);
+				textBox1.Text = key;
+			}
+		}
 	}
 	class CryptListItem
 	{
