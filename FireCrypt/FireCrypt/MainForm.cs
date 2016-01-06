@@ -123,11 +123,26 @@ namespace FireCrypt
 		}
 		void TryLockVolume()
 		{
-			string pass = textBox1.Text;
-			currentVolume.NetworkDriveMap.UnMapDrive();
-			currentVolume.LockVolume(pass);
-			label5.Text = "Successfully Locked.";
-			UpdateCurrentItem();
+			try
+			{
+				string pass = textBox1.Text;
+				try
+				{
+					currentVolume.NetworkDriveMap.UnMapDrive();
+				}
+				catch (System.ComponentModel.Win32Exception)
+				{
+					MessageBox.Show("Could not unmap drive. You can do this manually by right-clicking the drive in Explorer and selecting 'Disconnect'.");
+				}
+				currentVolume.LockVolume(pass);
+				label5.Text = "Successfully Locked.";
+				UpdateCurrentItem();
+			}
+			catch (Exception e)
+			{
+				label5.Text = "Drive lock error.";
+				MessageBox.Show(else.ToString());
+			}
 		}
 		void TryUnlockVolume()
 		{
