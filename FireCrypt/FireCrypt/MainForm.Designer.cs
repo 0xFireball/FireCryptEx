@@ -18,7 +18,6 @@ namespace FireCrypt
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label label1;
 		
 		/// <summary>
@@ -54,9 +53,7 @@ namespace FireCrypt
 			this.button5 = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// cryptList
@@ -161,17 +158,6 @@ namespace FireCrypt
 			this.label5.TabIndex = 12;
 			this.label5.Text = "Volume Locked.";
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(438, 158);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(45, 37);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 13;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Visible = false;
-			// 
 			// label1
 			// 
 			this.label1.Location = new System.Drawing.Point(207, 374);
@@ -186,7 +172,6 @@ namespace FireCrypt
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 409);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.button5);
@@ -204,7 +189,6 @@ namespace FireCrypt
 			this.Text = "FireCrypt";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
 			this.Load += new System.EventHandler(this.MainFormLoad);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

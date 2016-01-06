@@ -104,7 +104,7 @@ namespace FireCrypt
 		}
 		void TryUnlockVolume()
 		{
-			pictureBox1.Visible = true;
+			//pictureBox1.Visible = true;
 			try
 			{
 				string pass = textBox1.Text;
@@ -129,7 +129,7 @@ namespace FireCrypt
 				MessageBox.Show(e.ToString());
 				label5.Text = "Unknown Decryption Error. Check your password.";
 			}
-			pictureBox1.Visible = false;
+			//pictureBox1.Visible = false;
 			UpdateCurrentItem();
 		}
 		void Button1Click(object sender, EventArgs e)
