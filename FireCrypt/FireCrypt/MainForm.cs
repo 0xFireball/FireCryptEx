@@ -207,6 +207,10 @@ namespace FireCrypt
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
+			Button btnSender = (Button)sender;
+		    Point ptLowerLeft = new Point(0, btnSender.Height);
+		    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);           
+		    newOrExistingCtxM.Show(ptLowerLeft);
 			var nvw = new FireCrypt.Wizards.NewVolumeWizard();
 			nvw.ShowDialog();
 			if (nvw.FinalVolume!=null)

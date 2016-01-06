@@ -25,6 +25,9 @@ namespace FireCrypt
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.ContextMenuStrip newOrExistingCtxM;
+		private System.Windows.Forms.ToolStripMenuItem addNewToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem addExistingToolStripMenuItem;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -67,7 +70,11 @@ namespace FireCrypt
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.newOrExistingCtxM = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.addExistingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuStrip1.SuspendLayout();
+			this.newOrExistingCtxM.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cryptList
@@ -232,6 +239,26 @@ namespace FireCrypt
 			this.comboBox1.Size = new System.Drawing.Size(65, 21);
 			this.comboBox1.TabIndex = 17;
 			// 
+			// newOrExistingCtxM
+			// 
+			this.newOrExistingCtxM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.addNewToolStripMenuItem,
+			this.addExistingToolStripMenuItem});
+			this.newOrExistingCtxM.Name = "newOrExistingCtxM";
+			this.newOrExistingCtxM.Size = new System.Drawing.Size(153, 70);
+			// 
+			// addNewToolStripMenuItem
+			// 
+			this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
+			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addNewToolStripMenuItem.Text = "Add New";
+			// 
+			// addExistingToolStripMenuItem
+			// 
+			this.addExistingToolStripMenuItem.Name = "addExistingToolStripMenuItem";
+			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addExistingToolStripMenuItem.Text = "Add Existing";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +286,7 @@ namespace FireCrypt
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
 			this.Load += new System.EventHandler(this.MainFormLoad);
 			this.contextMenuStrip1.ResumeLayout(false);
+			this.newOrExistingCtxM.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
