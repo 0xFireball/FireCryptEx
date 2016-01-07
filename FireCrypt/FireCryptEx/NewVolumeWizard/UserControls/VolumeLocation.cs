@@ -36,14 +36,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		{
 			//create new
 			SaveFileDialog sfd = new SaveFileDialog();
-			sfd.Filter = "FireCrypt Volumes (*.firecrypt)|*.firecrypt|All files (*.*)|*.*"  ;
+			sfd.Filter = "FireCrypt Volumes (*.FireCrypt)|*.FireCrypt|All files (*.*)|*.*"  ;
 			DialogResult dr = sfd.ShowDialog();
 			if (dr == DialogResult.OK)
 			{
 				VolumeFileLocation = sfd.FileName;
 				label4.Text = VolumeFileLocation;
 				string fnwoext = Path.GetFileNameWithoutExtension(VolumeFileLocation); //filenamewithout extension
-				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 				FireCryptVolume.CreateNewVolume(VolumeFileLocation, VolumeName, Password);
 				try
 				{
@@ -65,12 +65,12 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			//Choose existing
 			OpenFileDialog sfd = new OpenFileDialog();
 			sfd.Multiselect = false;
-			sfd.Filter = "FireCrypt Volumes (*.firecrypt)|*.firecrypt|All files (*.*)|*.*"  ;
+			sfd.Filter = "FireCrypt Volumes (*.FireCrypt)|*.FireCrypt|All files (*.*)|*.*"  ;
 			DialogResult dr = sfd.ShowDialog();
 			if (dr == DialogResult.OK)
 			{
 				string tvfl = sfd.FileName; //test volume file location
-				if (tvfl.EndsWith(".firecrypt"))
+				if (tvfl.EndsWith(".FireCrypt"))
 				{
 					tvfl = Path.GetDirectoryName(tvfl);
 				}

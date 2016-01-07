@@ -83,7 +83,7 @@ namespace FireCrypt
 		public static void CreateNewVolume(string location, string label, string password)
 		{
 			string fnwoext = Path.GetFileNameWithoutExtension(location); //filenamewithout extension
-			string volN = Path.GetDirectoryName(location)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+			string volN = Path.GetDirectoryName(location)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 			string vaultL = Path.GetDirectoryName(volN);
 			Directory.CreateDirectory(Path.GetDirectoryName(volN));
 			string vid = Guid.NewGuid().ToString();
@@ -153,7 +153,7 @@ namespace FireCrypt
 		{
 			RawLocation = location;
 			string fnwoext = Path.GetFileNameWithoutExtension(RawLocation); //filenamewithout extension
-			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 			VolumeLocation = volN;
 			VaultLocation = Path.GetDirectoryName(volN);
 			_unlocked = Directory.Exists(OpenVaultLocation);
@@ -167,7 +167,7 @@ namespace FireCrypt
 		public FireCryptVolume()
 		{
 			string fnwoext = Path.GetFileNameWithoutExtension(RawLocation); //filenamewithout extension
-			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".firecrypt";
+			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 			VolumeLocation = volN;
 			VaultLocation = Path.GetDirectoryName(volN);
 			_unlocked = Directory.Exists(OpenVaultLocation);

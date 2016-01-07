@@ -72,6 +72,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.nextBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.nextBtn.Enabled = false;
+			this.nextBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.nextBtn.Location = new System.Drawing.Point(517, 353);
 			this.nextBtn.Name = "nextBtn";
 			this.nextBtn.Size = new System.Drawing.Size(87, 31);
@@ -84,7 +85,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.textBox1.Location = new System.Drawing.Point(252, 77);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(238, 29);
+			this.textBox1.Size = new System.Drawing.Size(238, 25);
 			this.textBox1.TabIndex = 2;
 			this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyUp);
 			// 
@@ -109,7 +110,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.textBox2.Location = new System.Drawing.Point(252, 108);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.PasswordChar = '•';
-			this.textBox2.Size = new System.Drawing.Size(238, 29);
+			this.textBox2.Size = new System.Drawing.Size(238, 25);
 			this.textBox2.TabIndex = 4;
 			this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox2KeyUp);
 			this.textBox2.Leave += new System.EventHandler(this.TextBox3Leave);
@@ -129,7 +130,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.textBox3.Location = new System.Drawing.Point(252, 139);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.PasswordChar = '•';
-			this.textBox3.Size = new System.Drawing.Size(238, 29);
+			this.textBox3.Size = new System.Drawing.Size(238, 25);
 			this.textBox3.TabIndex = 6;
 			this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox3KeyUp);
 			this.textBox3.Leave += new System.EventHandler(this.TextBox3Leave);
@@ -140,6 +141,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.Enabled = false;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Location = new System.Drawing.Point(14, 80);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(66, 31);
@@ -153,7 +155,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.textBox4.Enabled = false;
 			this.textBox4.Location = new System.Drawing.Point(14, 45);
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(238, 29);
+			this.textBox4.Size = new System.Drawing.Size(238, 25);
 			this.textBox4.TabIndex = 9;
 			// 
 			// checkBox1
@@ -170,6 +172,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button2.Enabled = false;
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button2.Location = new System.Drawing.Point(86, 80);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(66, 31);
@@ -182,6 +185,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button3.Enabled = false;
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button3.Location = new System.Drawing.Point(158, 80);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(94, 31);
@@ -204,7 +208,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			// WelcomePage
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label4);

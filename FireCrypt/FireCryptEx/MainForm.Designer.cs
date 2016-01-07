@@ -23,7 +23,6 @@ namespace FireCrypt
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBox1;
-		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.ContextMenuStrip newOrExistingCtxM;
 		private System.Windows.Forms.ToolStripMenuItem addNewToolStripMenuItem;
@@ -68,7 +67,6 @@ namespace FireCrypt
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.label6 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.newOrExistingCtxM = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +78,7 @@ namespace FireCrypt
 			// cryptList
 			// 
 			this.cryptList.FormattingEnabled = true;
-			this.cryptList.Location = new System.Drawing.Point(13, 13);
+			this.cryptList.Location = new System.Drawing.Point(13, 30);
 			this.cryptList.Name = "cryptList";
 			this.cryptList.Size = new System.Drawing.Size(163, 342);
 			this.cryptList.TabIndex = 0;
@@ -88,7 +86,8 @@ namespace FireCrypt
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(12, 366);
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.Location = new System.Drawing.Point(12, 383);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(72, 31);
 			this.button1.TabIndex = 1;
@@ -98,7 +97,8 @@ namespace FireCrypt
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(100, 366);
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button2.Location = new System.Drawing.Point(100, 383);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 31);
 			this.button2.TabIndex = 2;
@@ -108,7 +108,7 @@ namespace FireCrypt
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(466, 377);
+			this.label2.Location = new System.Drawing.Point(466, 394);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(163, 23);
 			this.label2.TabIndex = 4;
@@ -117,7 +117,7 @@ namespace FireCrypt
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(298, 78);
+			this.textBox1.Location = new System.Drawing.Point(298, 95);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.PasswordChar = '•';
 			this.textBox1.Size = new System.Drawing.Size(320, 22);
@@ -126,7 +126,7 @@ namespace FireCrypt
 			// label3
 			// 
 			this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(207, 78);
+			this.label3.Location = new System.Drawing.Point(207, 95);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(85, 23);
 			this.label3.TabIndex = 6;
@@ -134,7 +134,8 @@ namespace FireCrypt
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(524, 106);
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button3.Location = new System.Drawing.Point(524, 123);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(94, 27);
 			this.button3.TabIndex = 7;
@@ -144,7 +145,8 @@ namespace FireCrypt
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(298, 106);
+			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button4.Location = new System.Drawing.Point(298, 123);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(65, 27);
 			this.button4.TabIndex = 9;
@@ -154,7 +156,8 @@ namespace FireCrypt
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(365, 106);
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Location = new System.Drawing.Point(365, 123);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(65, 27);
 			this.button5.TabIndex = 10;
@@ -165,7 +168,7 @@ namespace FireCrypt
 			// label4
 			// 
 			this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(207, 13);
+			this.label4.Location = new System.Drawing.Point(207, 30);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(411, 37);
 			this.label4.TabIndex = 11;
@@ -173,7 +176,7 @@ namespace FireCrypt
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(298, 224);
+			this.label5.Location = new System.Drawing.Point(298, 241);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(320, 18);
 			this.label5.TabIndex = 12;
@@ -181,7 +184,7 @@ namespace FireCrypt
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(207, 374);
+			this.label1.Location = new System.Drawing.Point(207, 391);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(231, 23);
 			this.label1.TabIndex = 14;
@@ -213,7 +216,7 @@ namespace FireCrypt
 			// 
 			// checkBox1
 			// 
-			this.checkBox1.Location = new System.Drawing.Point(298, 150);
+			this.checkBox1.Location = new System.Drawing.Point(298, 167);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(320, 24);
 			this.checkBox1.TabIndex = 15;
@@ -221,20 +224,11 @@ namespace FireCrypt
 			this.checkBox1.UseVisualStyleBackColor = true;
 			this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
 			// 
-			// label6
-			// 
-			this.label6.Location = new System.Drawing.Point(207, 316);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(422, 43);
-			this.label6.TabIndex = 16;
-			this.label6.Text = "FireCrypt is free encryption software by 0xFireball. Start by adding a new volume" +
-	"";
-			// 
 			// comboBox1
 			// 
 			this.comboBox1.Enabled = false;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(485, 152);
+			this.comboBox1.Location = new System.Drawing.Point(485, 169);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(65, 21);
 			this.comboBox1.TabIndex = 17;
@@ -245,19 +239,19 @@ namespace FireCrypt
 			this.addNewToolStripMenuItem,
 			this.addExistingToolStripMenuItem});
 			this.newOrExistingCtxM.Name = "newOrExistingCtxM";
-			this.newOrExistingCtxM.Size = new System.Drawing.Size(153, 70);
+			this.newOrExistingCtxM.Size = new System.Drawing.Size(140, 48);
 			// 
 			// addNewToolStripMenuItem
 			// 
 			this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
-			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.addNewToolStripMenuItem.Text = "Add New";
 			this.addNewToolStripMenuItem.Click += new System.EventHandler(this.AddNewToolStripMenuItemClick);
 			// 
 			// addExistingToolStripMenuItem
 			// 
 			this.addExistingToolStripMenuItem.Name = "addExistingToolStripMenuItem";
-			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.addExistingToolStripMenuItem.Text = "Add Existing";
 			this.addExistingToolStripMenuItem.Click += new System.EventHandler(this.AddExistingToolStripMenuItemClick);
 			// 
@@ -265,9 +259,8 @@ namespace FireCrypt
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(641, 409);
+			this.ClientSize = new System.Drawing.Size(641, 435);
 			this.Controls.Add(this.comboBox1);
-			this.Controls.Add(this.label6);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.label5);
@@ -281,10 +274,14 @@ namespace FireCrypt
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.cryptList);
+			this.DisplayHeader = false;
+			this.DisplayTitle = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
-			this.Text = "FireCrypt";
+			this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
+			this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
+			this.Text = "FireCryptEx";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
 			this.Load += new System.EventHandler(this.MainFormLoad);
 			this.contextMenuStrip1.ResumeLayout(false);

@@ -3,13 +3,14 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using FireCrypt.NewVolumeWizard.UserControls;
+using MetroFramework.Forms;
 
 namespace FireCrypt.Wizards
 {
 	/// <summary>
 	/// Description of NewVolumeWizard.
 	/// </summary>
-	public partial class NewVolumeWizard : Form
+	public partial class NewVolumeWizard : MetroForm
 	{
 		bool existingVolume;
 		public NewVolumeWizard(bool existing)

@@ -49,6 +49,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			this.finishBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.finishBtn.Enabled = false;
+			this.finishBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.finishBtn.Location = new System.Drawing.Point(403, 282);
 			this.finishBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.finishBtn.Name = "finishBtn";
@@ -60,6 +61,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			// button2
 			// 
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button2.Location = new System.Drawing.Point(23, 124);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(138, 32);
@@ -102,6 +104,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			// button1
 			// 
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Location = new System.Drawing.Point(23, 209);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(138, 32);
@@ -112,7 +115,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			// 
 			// VolumeLocation
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);

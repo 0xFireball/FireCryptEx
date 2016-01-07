@@ -49,6 +49,12 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPFramework">
+      <HintPath>..\packages\EPFramework.1.0.1\lib\EPFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="LibPowerCrypt4">
+      <HintPath>..\packages\PowerCrypt4.4.0.1\lib\LibPowerCrypt4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -127,12 +133,6 @@
   <ItemGroup>
     <Folder Include="NewVolumeWizard" />
     <Folder Include="NewVolumeWizard\UserControls" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibPowerCrypt4\LibPowerCrypt4.csproj">
-      <Project>{027DD64A-53EC-4AB3-BCC8-3F5C210CDCDF}</Project>
-      <Name>LibPowerCrypt4</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

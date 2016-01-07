@@ -7,9 +7,14 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+
+using EPFramework.Forms;
+using MetroFramework.Forms;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Security.Cryptography;
+
 
 using FireCrypt.Network;
 using FireCrypt.NewVolumeWizard;
@@ -20,7 +25,7 @@ namespace FireCrypt
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class MainForm : Form
+	public partial class MainForm : MetroForm
 	{
 		FireCryptVolume currentVolume;
 		List<string> CryptListItemLocations;
