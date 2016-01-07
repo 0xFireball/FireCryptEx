@@ -90,7 +90,6 @@ namespace FireCrypt
 		{
 			try
 			{
-				button3.Enabled = false;
 				if (!currentVolume.Unlocked)
 				{
 					label5.Text = "Unlocking...";
@@ -107,10 +106,6 @@ namespace FireCrypt
 			catch (NullReferenceException)
 			{
 				MessageBox.Show("Please select a volume.");
-			}
-			finally
-			{
-				button3.Enabled = true;
 			}
 		}
 		List<char> GetFreeDriveLetters()
