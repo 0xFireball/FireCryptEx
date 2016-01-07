@@ -94,14 +94,14 @@ namespace FireCrypt
 				if (!currentVolume.Unlocked)
 				{
 					label5.Text = "Unlocking...";
-					await Task.Run(()=>TryUnlockVolume());
-					//TryUnlockVolume();
+					//await Task.Run(()=>TryUnlockVolume());
+					TryUnlockVolume();
 				}
 				else
 				{
 					label5.Text = "Locking...";
-					await Task.Run(()=>TryLockVolume());
-					//TryLockVolume();
+					//await Task.Run(()=>TryLockVolume());
+					TryLockVolume();
 				}
 			}
 			catch (NullReferenceException)
