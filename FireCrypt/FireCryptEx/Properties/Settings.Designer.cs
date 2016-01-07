@@ -25,6 +25,18 @@ namespace FireCrypt.Properties {
 		
 		[global::System.Configuration.UserScopedSettingAttribute()]
 		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+		[global::System.Configuration.DefaultSettingValueAttribute("<License>NoLicense</License>")]
+		public string License {
+			get {
+				return ((string)(this["License"]));
+			}
+			set {
+				this["License"] = value;
+			}
+		}
+		
+		[global::System.Configuration.UserScopedSettingAttribute()]
+		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 		[global::System.Configuration.DefaultSettingValueAttribute("True")]
 		public bool UpgradeRequired {
 			get {

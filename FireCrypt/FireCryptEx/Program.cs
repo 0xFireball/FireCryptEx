@@ -19,9 +19,17 @@ namespace FireCrypt
 			{
 			  Properties.Settings.Default.Upgrade();
 			  Properties.Settings.Default.UpgradeRequired = false;
-			}
+			}			
+			
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			
+			if(!RegistrationForm.VerifyLicense())
+			{
+				new RegistrationForm().ShowDialog();
+			}
+			
+			
 			Application.Run(new MainForm());
 		}
 		
