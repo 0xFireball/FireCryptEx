@@ -413,6 +413,19 @@ namespace FireCrypt
 		{
 	
 		}
+		void ExportToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (licenseLevel<8)
+			{
+				MessageBox.Show("This feature is only available in the full version of FireCryptEx. Please purchase a full license to use this feature.");
+				return;
+			}
+			ExportFromCryptList();
+		}
+		void ExportFromCryptList()
+		{
+			
+		}
 		
 	}
 	class CryptListItem

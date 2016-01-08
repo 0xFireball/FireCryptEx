@@ -20,7 +20,7 @@ namespace FireCrypt
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
-		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ContextMenuStrip notifyIconMenu;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.ComboBox comboBox1;
@@ -66,7 +66,7 @@ namespace FireCrypt
 			this.label5 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -82,13 +82,17 @@ namespace FireCrypt
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.freeVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.contextMenuStrip1.SuspendLayout();
+			this.cryptListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.notifyIconMenu.SuspendLayout();
 			this.newOrExistingCtxM.SuspendLayout();
 			this.metroMenuStrip1.SuspendLayout();
+			this.cryptListMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// cryptList
 			// 
+			this.cryptList.ContextMenuStrip = this.cryptListMenu;
 			this.cryptList.FormattingEnabled = true;
 			this.cryptList.Location = new System.Drawing.Point(23, 86);
 			this.cryptList.Name = "cryptList";
@@ -205,26 +209,26 @@ namespace FireCrypt
 			// 
 			// notifyIcon1
 			// 
-			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+			this.notifyIcon1.ContextMenuStrip = this.notifyIconMenu;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
 			this.notifyIcon1.Text = "FireCryptEx";
 			this.notifyIcon1.Visible = true;
 			this.notifyIcon1.BalloonTipClicked += new System.EventHandler(this.NotifyIcon1BalloonTipClicked);
 			this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1MouseDoubleClick);
 			// 
-			// contextMenuStrip1
+			// notifyIconMenu
 			// 
-			this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.notifyIconMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.notifyIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.exitToolStripMenuItem});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
-			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1Opening);
+			this.notifyIconMenu.Name = "contextMenuStrip1";
+			this.notifyIconMenu.Size = new System.Drawing.Size(93, 26);
+			this.notifyIconMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1Opening);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -353,6 +357,20 @@ namespace FireCrypt
 			this.freeVersionToolStripMenuItem.Text = "Free Version";
 			this.freeVersionToolStripMenuItem.Click += new System.EventHandler(this.FreeVersionToolStripMenuItemClick);
 			// 
+			// cryptListMenu
+			// 
+			this.cryptListMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.exportToolStripMenuItem});
+			this.cryptListMenu.Name = "cryptListMenu";
+			this.cryptListMenu.Size = new System.Drawing.Size(108, 26);
+			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.exportToolStripMenuItem.Text = "Export";
+			this.exportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItemClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,10 +404,11 @@ namespace FireCrypt
 			this.Text = "FireCryptEx";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
 			this.Load += new System.EventHandler(this.MainFormLoad);
-			this.contextMenuStrip1.ResumeLayout(false);
+			this.notifyIconMenu.ResumeLayout(false);
 			this.newOrExistingCtxM.ResumeLayout(false);
 			this.metroMenuStrip1.ResumeLayout(false);
 			this.metroMenuStrip1.PerformLayout();
+			this.cryptListMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -402,5 +421,7 @@ namespace FireCrypt
         private System.Windows.Forms.ToolStripMenuItem freeVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addNewToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addExistingToolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip cryptListMenu;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
