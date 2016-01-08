@@ -27,6 +27,8 @@ namespace FireCrypt
 		private System.Windows.Forms.ContextMenuStrip newOrExistingCtxM;
 		private System.Windows.Forms.ToolStripMenuItem addNewToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem addExistingToolStripMenuItem;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button button6;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -71,6 +73,8 @@ namespace FireCrypt
 			this.newOrExistingCtxM = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.addExistingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.label6 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
 			this.contextMenuStrip1.SuspendLayout();
 			this.newOrExistingCtxM.SuspendLayout();
 			this.SuspendLayout();
@@ -255,11 +259,34 @@ namespace FireCrypt
 			this.addExistingToolStripMenuItem.Text = "Add Existing";
 			this.addExistingToolStripMenuItem.Click += new System.EventHandler(this.AddExistingToolStripMenuItemClick);
 			// 
+			// label6
+			// 
+			this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.ForeColor = System.Drawing.Color.DarkRed;
+			this.label6.Location = new System.Drawing.Point(207, 332);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(411, 40);
+			this.label6.TabIndex = 18;
+			this.label6.Text = "TRIAL: 0 Days Remaining";
+			// 
+			// button6
+			// 
+			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button6.Location = new System.Drawing.Point(451, 350);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(167, 31);
+			this.button6.TabIndex = 19;
+			this.button6.Text = "Remove License";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.Button6Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 435);
+			this.Controls.Add(this.button6);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.label1);

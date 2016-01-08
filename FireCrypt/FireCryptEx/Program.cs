@@ -21,6 +21,8 @@ namespace FireCrypt
 			  Properties.Settings.Default.UpgradeRequired = false;
 			}			
 			
+			//Properties.Settings.Default.Reset();
+			
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			

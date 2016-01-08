@@ -66,9 +66,20 @@ namespace FireCrypt
 		{
 	
 		}
+		Portable.Licensing.License uLicense = RegistrationForm.userLicense;
+		static bool isTrial=true;
+		static int maxVaults = isTrial?0:999999;
+		void ApplyRestrictions()
+		{
+			isTrial = RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial;
+			label6.Text = isTrial?String.Format("TRIAL: {0} DAYS REMAINING.", (int)(RegistrationForm.userLicense.Expiration - DateTime.Now).TotalDays):"";
+			maxVaults = int.Parse(uLicense.ProductFeatures.Get("MaxVolumes"));
+		}
 		
 		void MainFormLoad(object sender, EventArgs e1)
 		{
+			//trial info
+			ApplyRestrictions();
 			//automatic versioning
 			label1.Text = string.Format("Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 			//Properties.Settings.Default.Reload();
@@ -212,6 +223,15 @@ namespace FireCrypt
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
+			if (isTrial)
+			{
+				int currentV = cryptList.Items.Count;
+				if (currentV >= maxVaults)
+				{
+					MessageBox.Show("You have reached the maximum number of vaults allowed by your license. Upgrade your license to add more vaults.");
+					return;
+				}
+			}
 			Button btnSender = (Button)sender;
 		    Point ptLowerLeft = new Point(0, btnSender.Height);
 		    ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);           
@@ -301,6 +321,12 @@ namespace FireCrypt
 		List<string> freeDriveLetters = new List<string>();
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
+			if (isTrial)
+			{
+				checkBox1.Checked = false;
+				MessageBox.Show("This feature is only available in the full version of FireCryptEx.");
+				return;
+			}
 			comboBox1.Enabled = checkBox1.Enabled;
 			if (comboBox1.Enabled)
 			{
@@ -328,6 +354,15 @@ namespace FireCrypt
 				FireCryptVolume nv = nvw.FinalVolume;
 				cryptList.Items.Add(new CryptListItem(nv));
 				SaveCryptList();
+			}
+		}
+		void Button6Click(object sender, EventArgs e)
+		{
+			DialogResult dr = MessageBox.Show("Are you sure you want to remove your license (You can always add it back)?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+			if (dr == DialogResult.Yes)
+			{
+				Properties.Settings.Default.License="<l>N</l>";
+				MessageBox.Show("Your license has been removed. Restart the application to apply changes.");
 			}
 		}
 		
