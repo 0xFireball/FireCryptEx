@@ -67,6 +67,7 @@ namespace FireCrypt
 					MessageBox.Show("Your license is invalid, nonexistent, or has expired. Please select a new license, or enter the limited demo mode.","FireCryptEx");
 				return false;
 			}
+			accessLevel = 2;//pending update
 			return true;
 		}
 		void RegistrationFormFormClosing(object sender, FormClosingEventArgs e)

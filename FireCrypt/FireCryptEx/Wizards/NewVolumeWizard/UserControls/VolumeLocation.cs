@@ -47,6 +47,8 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 				string fnwoext = Path.GetFileNameWithoutExtension(VolumeFileLocation); //filenamewithout extension
 				string volN = Path.GetDirectoryName(VolumeFileLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 				FireCryptVolume.CreateNewVolume(VolumeFileLocation, VolumeName, Password, VolumeVersion);
+				//dont change it before createvolume because it uses the older standard.
+				VolumeFileLocation = volN; //point it to the actual .FireCrypt file.
 				try
 				{
 					FireCryptVolume fcv  = new FireCryptVolume(VolumeFileLocation);

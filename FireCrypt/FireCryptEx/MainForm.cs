@@ -71,7 +71,11 @@ namespace FireCrypt
 		static int maxVaults = licenseLevel<8?1:999999;
 		void ApplyRestrictions()
 		{
-			//if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial) licenseLevel=1;
+			if (RegistrationForm.accessLevel==2)
+			{
+				if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial) licenseLevel=1;
+				if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Standard) licenseLevel=8;
+			}
 			label6.Text = licenseLevel==1?String.Format("TRIAL: {0} DAYS REMAINING.", (int)(RegistrationForm.userLicense.Expiration - DateTime.Now).TotalDays):"";
 			label6.Text = licenseLevel==0?"DEMO MODE [UPGRADE]":"";
 			if (licenseLevel==1) {
