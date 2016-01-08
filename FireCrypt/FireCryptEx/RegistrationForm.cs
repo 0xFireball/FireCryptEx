@@ -18,6 +18,13 @@ namespace FireCrypt
 	/// </summary>
 	public partial class RegistrationForm : MetroForm
 	{
+		/// <summary>
+		/// Access Level to program
+		/// 0: Demo mode
+		/// 1: Trial mode
+		/// 8: Normal mode
+		/// </summary>
+		public static int accessLevel = -1;
 		public static License userLicense;
 		public RegistrationForm()
 		{
@@ -56,14 +63,15 @@ namespace FireCrypt
 				foreach (var failure in validationFailures)
 					     MessageBox.Show(failure.GetType().Name + ": " + failure.Message + " - " + failure.HowToResolve);
 				//new RegistrationForm().ShowDialog();
-				MessageBox.Show("Your license is invalid, nonexistent, or has expired. Please select a new license.");
+				if (accessLevel<0)
+					MessageBox.Show("Your license is invalid, nonexistent, or has expired. Please select a new license, or enter the limited demo mode.","FireCryptEx");
 				return false;
 			}
 			return true;
 		}
 		void RegistrationFormFormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!VerifyLicense())
+			if (!VerifyLicense()&&accessLevel<0)
 			{
 				e.Cancel = true;
 				this.Hide();
@@ -93,10 +101,12 @@ namespace FireCrypt
 					string wMsg = string.Format("Welcome {0}, and thanks for using FireCryptEx. ",name);
 					if (l.Type==LicenseType.Trial)
 					{
+						accessLevel=1;
 						wMsg += string.Format("You have {0} days remaining on your trial license. You can now close this window and continue to the program. FireCryptEx will remember your license details.",days);
 					}
 					else
 					{
+						accessLevel=8;
 						wMsg += string.Format("Thank you for purchasing your full license of FireCryptEx! You can now close this window and continue to the program. FireCryptEx will remember your license details.");
 					}
 					label1.Text = wMsg;
@@ -113,6 +123,17 @@ namespace FireCrypt
 		void Button2Click(object sender, EventArgs e)
 		{
 			Environment.Exit(0);
+		}
+		void Button3Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("You are about to enter demo mode. Most features will be locked until you obtain a free trial license or purchase a full license.");
+			accessLevel=0;
+			string wMsg = string.Format("Welcome, and thanks for using FireCryptEx. ");
+			wMsg += string.Format("Demo mode has been activated. Most features are locked, and you cannot create new volumes. Upgrade to a free trial license to do much, much more with FireCryptEx.");
+			label1.Text = wMsg;
+			button1.Visible = false;
+			button2.Visible = false;
+			
 		}
 		
 	}

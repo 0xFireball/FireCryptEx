@@ -67,13 +67,16 @@ namespace FireCrypt
 	
 		}
 		Portable.Licensing.License uLicense = RegistrationForm.userLicense;
-		public static bool isTrial=true;
-		static int maxVaults = isTrial?0:999999;
+		public static int licenseLevel=RegistrationForm.accessLevel;
+		static int maxVaults = licenseLevel<8?1:999999;
 		void ApplyRestrictions()
 		{
-			isTrial = RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial;
-			label6.Text = isTrial?String.Format("TRIAL: {0} DAYS REMAINING.", (int)(RegistrationForm.userLicense.Expiration - DateTime.Now).TotalDays):"";
-			maxVaults = int.Parse(uLicense.ProductFeatures.Get("MaxVolumes"));
+			//if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial) licenseLevel=1;
+			label6.Text = licenseLevel==1?String.Format("TRIAL: {0} DAYS REMAINING.", (int)(RegistrationForm.userLicense.Expiration - DateTime.Now).TotalDays):"";
+			label6.Text = licenseLevel==0?"DEMO MODE [UPGRADE]":"";
+			if (licenseLevel==1) {
+				maxVaults = int.Parse(uLicense.ProductFeatures.Get("MaxVolumes"));
+			}
 		}
 		
 		void MainFormLoad(object sender, EventArgs e1)
@@ -227,7 +230,7 @@ namespace FireCrypt
 		}
 		void Button1Click(object sender, EventArgs e)
 		{
-			if (isTrial)
+			if (licenseLevel<=1)
 			{
 				int currentV = cryptList.Items.Count;
 				if (currentV >= maxVaults)
@@ -326,7 +329,7 @@ namespace FireCrypt
 		bool react=true;
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
-			if (isTrial)
+			if (licenseLevel<=1)
 			{
 				checkBox1.Checked = false;
 				if (react)
@@ -343,6 +346,11 @@ namespace FireCrypt
 		}
 		void AddNew()
 		{
+			if (licenseLevel<1)
+			{
+				MessageBox.Show("Demo licenses cannot create vaults. Upgrade to a trial or full license.");
+				return;
+			}
 			var nvw = new FireCrypt.Wizards.NewVolumeWizard(false);
 			nvw.ShowDialog();
 			if (nvw.FinalVolume!=null)
@@ -396,6 +404,14 @@ namespace FireCrypt
 		void FreeVersionToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("https://github.com/0xFireball/FireCrypt");
+		}
+		void MetroMenuStrip1ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+		{
+	
+		}
+		void ContextMenuStrip1Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+	
 		}
 		
 	}

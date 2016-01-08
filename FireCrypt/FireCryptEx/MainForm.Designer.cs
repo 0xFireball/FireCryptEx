@@ -201,6 +201,7 @@ namespace FireCrypt
 			this.label1.Size = new System.Drawing.Size(231, 23);
 			this.label1.TabIndex = 14;
 			this.label1.Text = "Version [not set]";
+			this.label1.Click += new System.EventHandler(this.Label1Click);
 			// 
 			// notifyIcon1
 			// 
@@ -217,12 +218,13 @@ namespace FireCrypt
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.exitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip1Opening);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -301,6 +303,7 @@ namespace FireCrypt
 			this.metroMenuStrip1.Size = new System.Drawing.Size(615, 28);
 			this.metroMenuStrip1.TabIndex = 20;
 			this.metroMenuStrip1.Text = "metroMenuStrip1";
+			this.metroMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MetroMenuStrip1ItemClicked);
 			// 
 			// menuToolStripMenuItem
 			// 

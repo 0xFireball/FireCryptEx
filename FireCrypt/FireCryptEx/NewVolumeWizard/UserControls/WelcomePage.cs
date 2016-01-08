@@ -143,7 +143,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
 		{
 			react = !react;
-			if (MainForm.isTrial&&react)
+			if (MainForm.licenseLevel<=1&&react)
 			{
 				MessageBox.Show("Creating more advanced volumes requires a full license.");
 				comboBox1.SelectedIndex=0;
