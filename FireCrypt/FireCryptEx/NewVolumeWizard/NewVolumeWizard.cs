@@ -44,6 +44,8 @@ namespace FireCrypt.Wizards
 				VolumeLocation vlp = new VolumeLocation(VolumeName, Password);
 				ShowContent(vlp);
 				panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);
+				panel1.Controls.Find("button2", true)[0].Visible = false;
+				panel1.Controls.Find("label2", true)[0].Visible = false;
 			}
 		}
 		string VolumeName;
