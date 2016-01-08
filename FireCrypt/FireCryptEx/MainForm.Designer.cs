@@ -90,10 +90,9 @@ namespace FireCrypt
 			// cryptList
 			// 
 			this.cryptList.FormattingEnabled = true;
-			this.cryptList.ItemHeight = 19;
 			this.cryptList.Location = new System.Drawing.Point(23, 86);
 			this.cryptList.Name = "cryptList";
-			this.cryptList.Size = new System.Drawing.Size(163, 327);
+			this.cryptList.Size = new System.Drawing.Size(163, 316);
 			this.cryptList.TabIndex = 0;
 			this.cryptList.SelectedIndexChanged += new System.EventHandler(this.CryptListSelectedIndexChanged);
 			// 
@@ -133,7 +132,7 @@ namespace FireCrypt
 			this.textBox1.Location = new System.Drawing.Point(308, 151);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.PasswordChar = '•';
-			this.textBox1.Size = new System.Drawing.Size(320, 26);
+			this.textBox1.Size = new System.Drawing.Size(320, 22);
 			this.textBox1.TabIndex = 5;
 			// 
 			// label3
@@ -207,7 +206,7 @@ namespace FireCrypt
 			// 
 			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-			this.notifyIcon1.Text = "FireCrypt";
+			this.notifyIcon1.Text = "FireCryptEx";
 			this.notifyIcon1.Visible = true;
 			this.notifyIcon1.BalloonTipClicked += new System.EventHandler(this.NotifyIcon1BalloonTipClicked);
 			this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1MouseDoubleClick);
@@ -218,12 +217,12 @@ namespace FireCrypt
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.exitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(109, 30);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -243,7 +242,7 @@ namespace FireCrypt
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Location = new System.Drawing.Point(486, 244);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(65, 27);
+			this.comboBox1.Size = new System.Drawing.Size(65, 21);
 			this.comboBox1.TabIndex = 17;
 			// 
 			// newOrExistingCtxM
@@ -253,19 +252,19 @@ namespace FireCrypt
 			this.addNewToolStripMenuItem,
 			this.addExistingToolStripMenuItem});
 			this.newOrExistingCtxM.Name = "newOrExistingCtxM";
-			this.newOrExistingCtxM.Size = new System.Drawing.Size(168, 56);
+			this.newOrExistingCtxM.Size = new System.Drawing.Size(140, 48);
 			// 
 			// addNewToolStripMenuItem
 			// 
 			this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
-			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.addNewToolStripMenuItem.Text = "Add New";
 			this.addNewToolStripMenuItem.Click += new System.EventHandler(this.AddNewToolStripMenuItemClick);
 			// 
 			// addExistingToolStripMenuItem
 			// 
 			this.addExistingToolStripMenuItem.Name = "addExistingToolStripMenuItem";
-			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
 			this.addExistingToolStripMenuItem.Text = "Add Existing";
 			this.addExistingToolStripMenuItem.Click += new System.EventHandler(this.AddExistingToolStripMenuItemClick);
 			// 
@@ -299,7 +298,7 @@ namespace FireCrypt
 			this.aboutToolStripMenuItem});
 			this.metroMenuStrip1.Location = new System.Drawing.Point(20, 30);
 			this.metroMenuStrip1.Name = "metroMenuStrip1";
-			this.metroMenuStrip1.Size = new System.Drawing.Size(615, 33);
+			this.metroMenuStrip1.Size = new System.Drawing.Size(615, 28);
 			this.metroMenuStrip1.TabIndex = 20;
 			this.metroMenuStrip1.Text = "metroMenuStrip1";
 			// 
@@ -310,20 +309,20 @@ namespace FireCrypt
 			this.addExistingToolStripMenuItem1});
 			this.menuToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
 			this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-			this.menuToolStripMenuItem.Size = new System.Drawing.Size(73, 29);
+			this.menuToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
 			this.menuToolStripMenuItem.Text = "Menu";
 			// 
 			// addNewToolStripMenuItem1
 			// 
 			this.addNewToolStripMenuItem1.Name = "addNewToolStripMenuItem1";
-			this.addNewToolStripMenuItem1.Size = new System.Drawing.Size(194, 30);
+			this.addNewToolStripMenuItem1.Size = new System.Drawing.Size(161, 24);
 			this.addNewToolStripMenuItem1.Text = "Add New";
 			this.addNewToolStripMenuItem1.Click += new System.EventHandler(this.AddNewToolStripMenuItem1Click);
 			// 
 			// addExistingToolStripMenuItem1
 			// 
 			this.addExistingToolStripMenuItem1.Name = "addExistingToolStripMenuItem1";
-			this.addExistingToolStripMenuItem1.Size = new System.Drawing.Size(194, 30);
+			this.addExistingToolStripMenuItem1.Size = new System.Drawing.Size(161, 24);
 			this.addExistingToolStripMenuItem1.Text = "Add Existing";
 			this.addExistingToolStripMenuItem1.Click += new System.EventHandler(this.AddExistingToolStripMenuItem1Click);
 			// 
@@ -334,26 +333,26 @@ namespace FireCrypt
 			this.freeVersionToolStripMenuItem});
 			this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(75, 29);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
 			// aboutToolStripMenuItem1
 			// 
 			this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(194, 30);
+			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
 			this.aboutToolStripMenuItem1.Text = "About";
 			this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1Click);
 			// 
 			// freeVersionToolStripMenuItem
 			// 
 			this.freeVersionToolStripMenuItem.Name = "freeVersionToolStripMenuItem";
-			this.freeVersionToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
+			this.freeVersionToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
 			this.freeVersionToolStripMenuItem.Text = "Free Version";
 			this.freeVersionToolStripMenuItem.Click += new System.EventHandler(this.FreeVersionToolStripMenuItemClick);
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(655, 493);
 			this.Controls.Add(this.metroMenuStrip1);
