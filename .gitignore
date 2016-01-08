@@ -3,6 +3,9 @@ bin
 obj
 .vs
 
+#misc
+.userprefs
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

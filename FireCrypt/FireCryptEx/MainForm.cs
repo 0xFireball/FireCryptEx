@@ -341,7 +341,7 @@ namespace FireCrypt
 				comboBox1.Items.AddRange(freeDriveLetters.ToArray());
 			}
 		}
-		void AddNewToolStripMenuItemClick(object sender, EventArgs e)
+		void AddNew()
 		{
 			var nvw = new FireCrypt.Wizards.NewVolumeWizard(false);
 			nvw.ShowDialog();
@@ -352,7 +352,7 @@ namespace FireCrypt
 				SaveCryptList();
 			}
 		}
-		void AddExistingToolStripMenuItemClick(object sender, EventArgs e)
+		void AddExisting()
 		{
 			var nvw = new FireCrypt.Wizards.NewVolumeWizard(true);
 			nvw.ShowDialog();
@@ -363,6 +363,15 @@ namespace FireCrypt
 				SaveCryptList();
 			}
 		}
+		
+		void AddNewToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			AddNew();
+		}
+		void AddExistingToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			AddExisting();
+		}
 		void Button6Click(object sender, EventArgs e)
 		{
 			DialogResult dr = MessageBox.Show("Are you sure you want to remove your license (You can always add it back)?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -371,6 +380,14 @@ namespace FireCrypt
 				Properties.Settings.Default.License="<l>N</l>";
 				MessageBox.Show("Your license has been removed. Restart the application to apply changes.");
 			}
+		}
+		void AddNewToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			AddNew();
+		}
+		void AddExistingToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			AddExisting();
 		}
 		
 	}
