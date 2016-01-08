@@ -72,11 +72,12 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			if (dr == DialogResult.OK)
 			{
 				string tvfl = sfd.FileName; //test volume file location
+				VolumeFileLocation = tvfl;
 				if (tvfl.EndsWith(".FireCrypt"))
 				{
 					tvfl = Path.GetDirectoryName(tvfl);
 				}
-				VolumeFileLocation = tvfl;
+				string vaultLoc = tvfl;
 				label4.Text = VolumeFileLocation;
 				try
 				{
