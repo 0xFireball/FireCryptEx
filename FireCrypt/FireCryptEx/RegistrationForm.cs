@@ -101,6 +101,7 @@ namespace FireCrypt
 					}
 					label1.Text = wMsg;
 					button1.Visible = false;
+					button2.Visible = false;
 					//Properties.Settings.Default.License = "<L>UNveRIFY!!!!!</L>"; //remove this later
 				}
 				else
