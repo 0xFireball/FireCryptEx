@@ -23,6 +23,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
 		
 		/// <summary>
 		/// Disposes resources used by the control.
@@ -61,6 +62,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -217,6 +219,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(325, 29);
 			this.comboBox1.TabIndex = 14;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1SelectedIndexChanged);
 			// 
 			// label5
 			// 
@@ -226,10 +229,19 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 			this.label5.TabIndex = 15;
 			this.label5.Text = "Volume Format Version";
 			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(25, 388);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(325, 30);
+			this.label6.TabIndex = 16;
+			this.label6.Text = "Select 1.0 for compatibility.";
+			// 
 			// WelcomePage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.panel1);

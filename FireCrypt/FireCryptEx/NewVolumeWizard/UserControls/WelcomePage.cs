@@ -17,7 +17,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		public string Password;
 		public string VolumeVersion;
 		
-		List<string> volumeVersions = new List<string>{"1.0"};
+		List<string> volumeVersions = new List<string>{"1.0","1.0+"};
 		public WelcomePage()
 		{
 			//
@@ -31,6 +31,7 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		}
 		void WelcomePageLoad(object sender, EventArgs e)
 		{
+			//comboBox1.Enabled = !MainForm.isTrial;
 			comboBox1.Items.AddRange(volumeVersions.ToArray());
 			comboBox1.SelectedIndex=0;
 		}
@@ -137,6 +138,16 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		void TextBox1KeyUp(object sender, KeyEventArgs e)
 		{
 			ValidateNextButton();
+		}
+		bool react = true;
+		void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			react = !react;
+			if (MainForm.isTrial&&react)
+			{
+				MessageBox.Show("Creating more advanced volumes requires a full license.");
+				comboBox1.SelectedIndex=0;
+			}
 		}
 		
 	}

@@ -67,7 +67,7 @@ namespace FireCrypt
 	
 		}
 		Portable.Licensing.License uLicense = RegistrationForm.userLicense;
-		static bool isTrial=true;
+		public static bool isTrial=true;
 		static int maxVaults = isTrial?0:999999;
 		void ApplyRestrictions()
 		{
@@ -323,12 +323,15 @@ namespace FireCrypt
 			return (Type.GetType ("Mono.Runtime") == null);
 		}
 		List<string> freeDriveLetters = new List<string>();
+		bool react=true;
 		void CheckBox1CheckedChanged(object sender, EventArgs e)
 		{
 			if (isTrial)
 			{
 				checkBox1.Checked = false;
-				MessageBox.Show("This feature is only available in the full version of FireCryptEx.");
+				if (react)
+					MessageBox.Show("This feature is only available in the full version of FireCryptEx.");
+				react=!react;
 				return;
 			}
 			comboBox1.Enabled = checkBox1.Enabled;
