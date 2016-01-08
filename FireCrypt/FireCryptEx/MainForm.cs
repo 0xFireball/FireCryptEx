@@ -286,7 +286,7 @@ namespace FireCrypt
 			forceClose = false;
 			this.Hide();
 			if (e.Cancel)
-				notifyIcon1.ShowBalloonTip(5000, "FireCrypt", "FireCrypt is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
+				notifyIcon1.ShowBalloonTip(5000, "FireCryptEx", "FireCryptEx is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
