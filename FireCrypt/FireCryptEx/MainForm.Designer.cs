@@ -82,9 +82,10 @@ namespace FireCrypt
 			// cryptList
 			// 
 			this.cryptList.FormattingEnabled = true;
+			this.cryptList.ItemHeight = 19;
 			this.cryptList.Location = new System.Drawing.Point(13, 30);
 			this.cryptList.Name = "cryptList";
-			this.cryptList.Size = new System.Drawing.Size(163, 342);
+			this.cryptList.Size = new System.Drawing.Size(163, 327);
 			this.cryptList.TabIndex = 0;
 			this.cryptList.SelectedIndexChanged += new System.EventHandler(this.CryptListSelectedIndexChanged);
 			// 
@@ -124,7 +125,7 @@ namespace FireCrypt
 			this.textBox1.Location = new System.Drawing.Point(298, 95);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.PasswordChar = '•';
-			this.textBox1.Size = new System.Drawing.Size(320, 22);
+			this.textBox1.Size = new System.Drawing.Size(320, 26);
 			this.textBox1.TabIndex = 5;
 			// 
 			// label3
@@ -209,12 +210,12 @@ namespace FireCrypt
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.exitToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(109, 30);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItemClick);
 			// 
@@ -232,30 +233,31 @@ namespace FireCrypt
 			// 
 			this.comboBox1.Enabled = false;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(485, 169);
+			this.comboBox1.Location = new System.Drawing.Point(476, 188);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(65, 21);
+			this.comboBox1.Size = new System.Drawing.Size(65, 27);
 			this.comboBox1.TabIndex = 17;
 			// 
 			// newOrExistingCtxM
 			// 
+			this.newOrExistingCtxM.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.newOrExistingCtxM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.addNewToolStripMenuItem,
 			this.addExistingToolStripMenuItem});
 			this.newOrExistingCtxM.Name = "newOrExistingCtxM";
-			this.newOrExistingCtxM.Size = new System.Drawing.Size(140, 48);
+			this.newOrExistingCtxM.Size = new System.Drawing.Size(168, 56);
 			// 
 			// addNewToolStripMenuItem
 			// 
 			this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
-			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.addNewToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
 			this.addNewToolStripMenuItem.Text = "Add New";
 			this.addNewToolStripMenuItem.Click += new System.EventHandler(this.AddNewToolStripMenuItemClick);
 			// 
 			// addExistingToolStripMenuItem
 			// 
 			this.addExistingToolStripMenuItem.Name = "addExistingToolStripMenuItem";
-			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+			this.addExistingToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
 			this.addExistingToolStripMenuItem.Text = "Add Existing";
 			this.addExistingToolStripMenuItem.Click += new System.EventHandler(this.AddExistingToolStripMenuItemClick);
 			// 
@@ -263,7 +265,7 @@ namespace FireCrypt
 			// 
 			this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label6.ForeColor = System.Drawing.Color.DarkRed;
-			this.label6.Location = new System.Drawing.Point(207, 332);
+			this.label6.Location = new System.Drawing.Point(198, 307);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(411, 40);
 			this.label6.TabIndex = 18;
@@ -282,7 +284,7 @@ namespace FireCrypt
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(641, 435);
 			this.Controls.Add(this.button6);

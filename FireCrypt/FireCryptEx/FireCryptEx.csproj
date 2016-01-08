@@ -53,10 +53,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EPFramework">
-      <HintPath>..\packages\EPFramework.1.0.1\lib\EPFramework.dll</HintPath>
+      <HintPath>..\libraries\EPFramework.dll</HintPath>
     </Reference>
     <Reference Include="LibPowerCrypt4">
-      <HintPath>..\packages\PowerCrypt4.4.0.1\lib\LibPowerCrypt4.dll</HintPath>
+      <HintPath>..\libraries\LibPowerCrypt4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>

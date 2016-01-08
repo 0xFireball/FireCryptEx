@@ -267,7 +267,7 @@ namespace FireCrypt
 		{
 			CryptListItem listItem = (CryptListItem)cryptList.Items[cryptList.SelectedIndex];
 			currentVolume = listItem.CryptVolume;
-			label4.Text = currentVolume.Label;
+			label4.Text = string.Format("{0} [{1}]", currentVolume.Label, currentVolume.VolumeVersion);
 			button3.Text = currentVolume.Unlocked ? "Lock Vault" : "Unlock Vault";
 			if (currentVolume.Unlocked)
 			{

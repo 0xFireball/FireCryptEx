@@ -41,7 +41,7 @@ namespace FireCrypt.Wizards
 			}
 			else
 			{
-				VolumeLocation vlp = new VolumeLocation(VolumeName, Password);
+				VolumeLocation vlp = new VolumeLocation(VolumeName, Password, VolumeVersion);
 				ShowContent(vlp);
 				panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);
 				panel1.Controls.Find("button2", true)[0].Visible = false;
@@ -50,11 +50,13 @@ namespace FireCrypt.Wizards
 		}
 		string VolumeName;
 		string Password;
+		string VolumeVersion;
 		void OnNextPage1Click(object sender, EventArgs e1, WelcomePage wp)
 		{
 			VolumeName = wp.VolumeName;
 			Password = wp.Password;
-			VolumeLocation vlp = new VolumeLocation(VolumeName, Password);
+			VolumeVersion = "1.0";
+			VolumeLocation vlp = new VolumeLocation(VolumeName, Password, VolumeVersion);
 			ShowContent(vlp);
 			panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);
 		}

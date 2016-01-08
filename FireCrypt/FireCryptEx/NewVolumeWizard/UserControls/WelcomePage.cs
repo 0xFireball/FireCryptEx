@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,6 +15,9 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 	{
 		public string VolumeName;
 		public string Password;
+		public string VolumeVersion;
+		
+		List<string> volumeVersions = new List<string>{"1.0"};
 		public WelcomePage()
 		{
 			//
@@ -27,7 +31,8 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		}
 		void WelcomePageLoad(object sender, EventArgs e)
 		{
-	
+			comboBox1.Items.AddRange(volumeVersions.ToArray());
+			comboBox1.SelectedIndex=0;
 		}
 		void TextBox2PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
@@ -51,6 +56,14 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		}
 		void NextBtnClick(object sender, EventArgs e)
 		{
+			try
+			{
+				VolumeVersion = volumeVersions[comboBox1.SelectedIndex];
+			}
+			catch
+			{
+				VolumeVersion="1.0";
+			}
 			VolumeName = textBox1.Text;
 			bool rk = checkBox1.Checked;
 			if (!rk)
