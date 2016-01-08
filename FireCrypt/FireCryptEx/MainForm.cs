@@ -389,6 +389,14 @@ namespace FireCrypt
 		{
 			AddExisting();
 		}
+		void AboutToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			new About().ShowDialog();
+		}
+		void FreeVersionToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("https://github.com/0xFireball/FireCrypt");
+		}
 		
 	}
 	class CryptListItem

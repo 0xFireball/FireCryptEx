@@ -342,12 +342,14 @@ namespace FireCrypt
 			this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
 			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(194, 30);
 			this.aboutToolStripMenuItem1.Text = "About";
+			this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.AboutToolStripMenuItem1Click);
 			// 
 			// freeVersionToolStripMenuItem
 			// 
 			this.freeVersionToolStripMenuItem.Name = "freeVersionToolStripMenuItem";
 			this.freeVersionToolStripMenuItem.Size = new System.Drawing.Size(194, 30);
 			this.freeVersionToolStripMenuItem.Text = "Free Version";
+			this.freeVersionToolStripMenuItem.Click += new System.EventHandler(this.FreeVersionToolStripMenuItemClick);
 			// 
 			// MainForm
 			// 
