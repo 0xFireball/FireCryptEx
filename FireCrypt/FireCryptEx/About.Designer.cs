@@ -45,7 +45,7 @@ namespace FireCrypt
 			// 
 			// About
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(435, 290);
 			this.Controls.Add(this.label1);
