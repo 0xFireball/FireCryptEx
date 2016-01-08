@@ -109,6 +109,10 @@ namespace FireCrypt
 				}
 		    }
 		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			Environment.Exit(0);
+		}
 		
 	}
 }
