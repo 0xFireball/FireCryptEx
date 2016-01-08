@@ -172,7 +172,7 @@ namespace FireCrypt
 				string pass = textBox1.Text;
 				currentVolume.UnlockVolume(pass);
 				label5.Text = "Successfully Unlocked.";
-				if (checkBox1.Checked)
+				if (checkBox1.Checked && IsMicrosoftCLR())
 				{
 					currentVolume.NetworkDriveMap = new NetworkDrive();
 					currentVolume.NetworkDriveMap.ShareName = NetworkDrive.ConvertToUNCPath(currentVolume.UnlockPath);
@@ -191,6 +191,10 @@ namespace FireCrypt
 				}
 				else
 				{
+					if (!IsMicrosoftCLR()&&checkBox1.Checked)
+					{
+						MessageBox.Show("This operation is not supported on your platform.");
+					}
 					System.Diagnostics.Process.Start(currentVolume.UnlockPath);
 				}
 			}

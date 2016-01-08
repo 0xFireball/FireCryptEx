@@ -63,6 +63,8 @@ namespace FireCrypt
 		string _metadata;
 		string _unlockPath;
 		
+		FileWiper fw;
+		
 		private static string UnlockLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+"\\FireCrypt\\";
 		
 		public bool Unlocked
@@ -127,15 +129,11 @@ namespace FireCrypt
 			}
 			if (Directory.Exists(unlockName))
 			{
+				fw.RecursivelyWipeDirectory(unlockName);
 				Directory.Delete(unlockName,true);
 			}
 			File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume,key).GetBytes());
 			ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);
-			FileWiper fw = new FileWiper();	
-			fw.PassInfoEvent += (e) => {};
-			fw.SectorInfoEvent += (e) => {};
-            fw.WipeDoneEvent += (e) => {};
-            fw.WipeErrorEvent += (e) => {};
 			fw.WipeFile(DecVolumeLocation, 1);
 			_unlocked = true;
 			_unlockPath = unlockName;
@@ -162,13 +160,9 @@ namespace FireCrypt
 				File.Delete(DecVolumeLocation);
 			}
 			ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
+			fw.RecursivelyWipeDirectory(unlockName);
 			Directory.Delete(unlockName, true);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
-			FileWiper fw = new FileWiper();
-			fw.PassInfoEvent += (e) => {};
-			fw.SectorInfoEvent += (e) => {};
-            fw.WipeDoneEvent += (e) => {};
-            fw.WipeErrorEvent += (e) => {};
 			fw.WipeFile(DecVolumeLocation, 1);
 			File.WriteAllBytes(VolumeLocation, PowerAES.Encrypt(dVolume, key).GetBytes());
 			_unlocked = false;
@@ -207,8 +201,25 @@ namespace FireCrypt
 			DoInit();
 		}
 		
+		static bool IsMicrosoftCLR()
+		{
+			return (Type.GetType ("Mono.Runtime") == null);
+		}
+		
+		
+		
 		private void DoInit()
 		{
+			//Initialize Required Objects
+			if (IsMicrosoftCLR())
+			{
+				fw = new FileWiper();	
+				fw.PassInfoEvent += (e) => {};
+				fw.SectorInfoEvent += (e) => {};
+	            fw.WipeDoneEvent += (e) => {};
+	            fw.WipeErrorEvent += (e) => {};
+			}
+			//Initialize Volume
 			string fnwoext = Path.GetFileNameWithoutExtension(RawLocation); //filenamewithout extension
 			string volN = Path.GetDirectoryName(RawLocation)+"\\"+fnwoext+".vault\\"+fnwoext+".FireCrypt";
 			VolumeLocation = volN;
