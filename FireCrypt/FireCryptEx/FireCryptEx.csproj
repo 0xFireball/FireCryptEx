@@ -102,24 +102,24 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewVolumeWizard\UserControls\VolumeLocation.cs">
+    <Compile Include="Wizards\NewVolumeWizard\UserControls\VolumeLocation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewVolumeWizard\UserControls\VolumeLocation.Designer.cs">
+    <Compile Include="Wizards\NewVolumeWizard\UserControls\VolumeLocation.Designer.cs">
       <DependentUpon>VolumeLocation.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewVolumeWizard\UserControls\WelcomePage.cs">
+    <Compile Include="Wizards\NewVolumeWizard\UserControls\WelcomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewVolumeWizard\UserControls\WelcomePage.Designer.cs">
+    <Compile Include="Wizards\NewVolumeWizard\UserControls\WelcomePage.Designer.cs">
       <DependentUpon>WelcomePage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NewVolumeWizard\NewVolumeWizard.cs">
+    <Compile Include="Wizards\NewVolumeWizard\NewVolumeWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewVolumeWizard\NewVolumeWizard.Designer.cs">
+    <Compile Include="Wizards\NewVolumeWizard\NewVolumeWizard.Designer.cs">
       <DependentUpon>NewVolumeWizard.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -148,19 +148,21 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewVolumeWizard\NewVolumeWizard.resx">
+    <EmbeddedResource Include="Wizards\NewVolumeWizard\NewVolumeWizard.resx">
       <DependentUpon>NewVolumeWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewVolumeWizard\UserControls\VolumeLocation.resx">
+    <EmbeddedResource Include="Wizards\NewVolumeWizard\UserControls\VolumeLocation.resx">
       <DependentUpon>VolumeLocation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewVolumeWizard\UserControls\WelcomePage.resx">
+    <EmbeddedResource Include="Wizards\NewVolumeWizard\UserControls\WelcomePage.resx">
       <DependentUpon>WelcomePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Wizards" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
