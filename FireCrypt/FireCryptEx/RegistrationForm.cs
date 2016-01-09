@@ -72,6 +72,7 @@ namespace FireCrypt
 		}
 		void RegistrationFormFormClosing(object sender, FormClosingEventArgs e)
 		{
+			//MessageBox.Show(accessLevel.ToString());
 			if (!VerifyLicense()&&accessLevel<0)
 			{
 				e.Cancel = true;

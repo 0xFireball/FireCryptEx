@@ -76,6 +76,7 @@ namespace FireCrypt
 				if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial) licenseLevel=1;
 				if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Standard) licenseLevel=8;
 			}
+			label6.Text="";
 			if(licenseLevel==1)label6.Text= String.Format("TRIAL: {0} DAYS REMAINING.", (int)(RegistrationForm.userLicense.Expiration - DateTime.Now).TotalDays);
 			if(licenseLevel==0)label6.Text="DEMO MODE [UPGRADE]";
 			if (licenseLevel==1) {
@@ -85,6 +86,8 @@ namespace FireCrypt
 		
 		void MainFormLoad(object sender, EventArgs e1)
 		{
+			//save license
+			Properties.Settings.Default.License = RegistrationForm.userLicense.ToString();
 			//trial info
 			ApplyRestrictions();
 			//automatic versioning
