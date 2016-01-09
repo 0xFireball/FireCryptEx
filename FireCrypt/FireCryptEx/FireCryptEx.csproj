@@ -53,6 +53,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\libraries\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EPFramework">
       <HintPath>..\libraries\EPFramework.dll</HintPath>
     </Reference>
@@ -66,7 +69,7 @@
       <HintPath>..\packages\Json.NET.Unsigned.1.0.0\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Portable.Licensing">
-      <HintPath>..\packages\Portable.Licensing.1.1.0\lib\portable-net40+sl4+wp7+win8\Portable.Licensing.dll</HintPath>
+      <HintPath>..\libraries\Portable.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
