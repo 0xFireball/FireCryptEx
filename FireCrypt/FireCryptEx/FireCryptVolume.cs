@@ -8,6 +8,8 @@ using System.IO.Compression;
 using System.Text;
 using System.Globalization;
 
+using Org.BouncyCastle.Crypto;
+
 using FireCrypt.Network;
 using SharpWipe;
 
@@ -96,11 +98,18 @@ namespace FireCrypt
 			volMeta["VolumeVersion"]=version;
 			string ed = Path.GetTempPath()+"\\"+Guid.NewGuid();
 			Directory.CreateDirectory(ed);
-			string unlLoc = ed;
-			string DecVolumeLocation = unlLoc+".dec";
-			ZipFile.CreateFromDirectory(unlLoc, DecVolumeLocation);
-			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
-			File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
+			switch (version)
+			{
+				case "1.0":
+					string unlLoc = ed;
+					string DecVolumeLocation = unlLoc+".dec";
+					ZipFile.CreateFromDirectory(unlLoc, DecVolumeLocation);
+					string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
+					File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
+					break;
+				default:
+					throw new InvalidOperationException("Cannot perform operation on unsupported volume version!");
+			}
 			string metaS = new JavaScriptSerializer().Serialize(volMeta);
 			File.WriteAllText(vaultL+"\\vault.metadata",metaS);
 		}
@@ -169,6 +178,10 @@ namespace FireCrypt
 			_unlockPath = null;
 		}
 		
+		private void Lock_1_BC(string key)
+		{
+			
+		}
 		
 		private dynamic TryLoadProperty(string key, dynamic defaultValue)
 		{

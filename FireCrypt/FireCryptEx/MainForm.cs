@@ -94,6 +94,7 @@ namespace FireCrypt
 			label1.Text = string.Format("Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 			//Properties.Settings.Default.Reload();
 			string volListJ = Properties.Settings.Default.VolumeList;
+			//panel1.BackColor = Color.FromArgb(255, Color.Transparent);
 			try
 			{
 				CryptListItemLocations = JsonConvert.DeserializeObject<List<string>>(volListJ);
@@ -432,6 +433,18 @@ namespace FireCrypt
 		void ExportFromCryptList()
 		{
 			
+		}
+		void MetroMenuStrip1DoubleClick(object sender, EventArgs e)
+		{
+			//metroMenuStrip1.Visible = false;
+		}
+		void MetroMenuStrip1MouseHover(object sender, EventArgs e)
+		{
+			//metroMenuStrip1.Visible = true;
+		}
+		void MetroMenuStrip1MouseLeave(object sender, EventArgs e)
+		{
+			//metroMenuStrip1.Visible = false;
 		}
 		
 	}
