@@ -160,6 +160,25 @@ namespace FireCrypt
 			}
 		}
 		
+		public static void DeleteDirectory(string target_dir)
+		{
+		    string[] files = Directory.GetFiles(target_dir);
+		    string[] dirs = Directory.GetDirectories(target_dir);
+		
+		    foreach (string file in files)
+		    {
+		        File.SetAttributes(file, FileAttributes.Normal);
+		        File.Delete(file);
+		    }
+		
+		    foreach (string dir in dirs)
+		    {
+		        DeleteDirectory(dir);
+		    }
+		
+		    Directory.Delete(target_dir, false);
+		}
+		
 		private void Lock_1_0(string key)
 		{
 			string unlockName = UnlockLocation+UID;
@@ -170,13 +189,13 @@ namespace FireCrypt
 			}
 			ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
 			fw.RecursivelyWipeDirectory(unlockName);
-			Directory.Delete(unlockName, true);
 			string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
 			fw.WipeFile(DecVolumeLocation, 1);
 			File.WriteAllBytes(VolumeLocation, PowerAES.Encrypt(dVolume, key).GetBytes());
-			_unlocked = false;
+            _unlocked = false;
 			_unlockPath = null;
-		}
+            DeleteDirectory(unlockName);
+        }
 		
 		private void Lock_1_BC(string key)
 		{

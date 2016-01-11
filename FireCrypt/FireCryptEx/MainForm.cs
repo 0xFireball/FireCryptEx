@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 using System.Security.Cryptography;
 
 using EPFramework.Forms;
@@ -29,7 +30,7 @@ namespace FireCrypt
 	{
 		FireCryptVolume currentVolume;
 		List<string> CryptListItemLocations;
-		
+		Process browserProcess;
 		public MainForm()
 		{
 			CryptListItemLocations = new List<string>();
@@ -120,14 +121,14 @@ namespace FireCrypt
 				if (!currentVolume.Unlocked)
 				{
 					label5.Text = "Unlocking...";
-					//await Task.Run(()=>TryUnlockVolume());
-					TryUnlockVolume();
+					await Task.Run(()=>TryUnlockVolume());
+					//TryUnlockVolume();
 				}
 				else
 				{
 					label5.Text = "Locking...";
-					//await Task.Run(()=>TryLockVolume());
-					TryLockVolume();
+					await Task.Run(()=>TryLockVolume());
+					//TryLockVolume();
 				}
 			}
 			catch (NullReferenceException)
@@ -157,6 +158,8 @@ namespace FireCrypt
 				string pass = textBox1.Text;
 				try
 				{
+					if (browserProcess!=null)
+						if (!browserProcess.HasExited) browserProcess.Kill();
 					if (currentVolume.NetworkDriveMap != null)
 						currentVolume.NetworkDriveMap.UnMapDrive();
 				}
@@ -169,6 +172,12 @@ namespace FireCrypt
 				label5.Text = "Successfully Locked.";
 				UpdateCurrentItem();
 			}
+            catch (IOException ioe)
+            {
+                MessageBox.Show("Please close all Explorer windows before locking volume.");
+                label5.Text = "Successfully Locked.";
+                UpdateCurrentItem();
+            }
 			catch (Exception e)
 			{
 				label5.Text = "Drive lock error.";
@@ -193,7 +202,7 @@ namespace FireCrypt
 					try
 					{
 						currentVolume.NetworkDriveMap.MapDrive();
-						System.Diagnostics.Process.Start(mdl);
+						browserProcess = Process.Start(mdl);
 					}
 					catch (System.ComponentModel.Win32Exception w3e)
 					{
@@ -206,8 +215,11 @@ namespace FireCrypt
 					{
 						MessageBox.Show("This operation is not supported on your platform.");
 					}
-					System.Diagnostics.Process.Start(currentVolume.UnlockPath);
-				}
+                    if (IsMicrosoftCLR())
+					    browserProcess = Process.Start("explorer.exe",currentVolume.UnlockPath);
+                    else
+                        browserProcess = Process.Start(currentVolume.UnlockPath);
+                }
 			}
 			catch (System.Reflection.TargetInvocationException ex)
 			{
