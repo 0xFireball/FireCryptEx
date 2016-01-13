@@ -28,7 +28,7 @@
  * improve this program. In doing so, you are bound by the terms and 
  * conditions of the AGPLv3 License.
  * 
- * /
+ */
 
 
 /*
