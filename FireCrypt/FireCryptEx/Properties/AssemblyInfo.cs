@@ -1,3 +1,36 @@
+/*
+ * THIS PROGRAM AND ITS SOURCE CODE ARE PROVIDED TO YOU FREE OF CHARGE.
+ * YOU ARE PROHIBITED FROM REMOVING THIS NOTICE FROM THIS SOURCE DOCUMENT
+ * OR OTHERWISE MODIFYING IT.
+ * 
+ * FireCryptEx is a free (and by now, open-source) program that allows
+ * the user to create encrypted volumes to store files.
+ * 
+ * FireCryptEx was and continues to be developed by 0xFireball, and is
+ * the successor to another free program, FireCrypt.
+ * 
+ * About the Author:
+ * Pseudonym: 0xFireball, ExaPhaser
+ * Websites:
+ * http://acetylene.x10.bz
+ * http://omnibean.x10.bz
+ * http://exaphaser.x10.bz
+ * 
+ * Contact:
+ * 0xFireball on GitHub
+ * 0xFireball on GitLab
+ * exaphaser on GitLab
+ * 
+ * omnibean@outlook.com
+ * 
+ *   
+ * You are hereby allowed to make changes to the below source code and
+ * improve this program. In doing so, you are bound by the terms and 
+ * conditions of the AGPLv3 License.
+ * 
+ * /
+
+
 #region Using directives
 using System;
 using System.Reflection;
@@ -24,6 +57,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion ("2.2.2.*")]
-[assembly: AssemblyFileVersion ("2.2.2.*")]
+[assembly: AssemblyVersion ("2.2.3.*")]
+[assembly: AssemblyFileVersion ("2.2.3.*")]
 [assembly: Guid ("a4067db9-0cc6-4a55-b87a-04b56a603f49")]

@@ -1,4 +1,36 @@
-﻿
+﻿/*
+ * THIS PROGRAM AND ITS SOURCE CODE ARE PROVIDED TO YOU FREE OF CHARGE.
+ * YOU ARE PROHIBITED FROM REMOVING THIS NOTICE FROM THIS SOURCE DOCUMENT
+ * OR OTHERWISE MODIFYING IT.
+ * 
+ * FireCryptEx is a free (and by now, open-source) program that allows
+ * the user to create encrypted volumes to store files.
+ * 
+ * FireCryptEx was and continues to be developed by 0xFireball, and is
+ * the successor to another free program, FireCrypt.
+ * 
+ * About the Author:
+ * Pseudonym: 0xFireball, ExaPhaser
+ * Websites:
+ * http://acetylene.x10.bz
+ * http://omnibean.x10.bz
+ * http://exaphaser.x10.bz
+ * 
+ * Contact:
+ * 0xFireball on GitHub
+ * 0xFireball on GitLab
+ * exaphaser on GitLab
+ * 
+ * omnibean@outlook.com
+ * 
+ *   
+ * You are hereby allowed to make changes to the below source code and
+ * improve this program. In doing so, you are bound by the terms and 
+ * conditions of the AGPLv3 License.
+ * 
+ * /
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,6 +104,10 @@ namespace FireCrypt
 		static int maxVaults = licenseLevel<8?1:999999;
 		void ApplyRestrictions()
 		{
+			if (licenseLevel<8)
+			{
+				label6.Visible=true;
+			}
 			if (RegistrationForm.accessLevel==2)
 			{
 				if(RegistrationForm.userLicense.Type==Portable.Licensing.LicenseType.Trial) licenseLevel=1;
@@ -87,10 +123,22 @@ namespace FireCrypt
 		
 		void MainFormLoad(object sender, EventArgs e1)
 		{
-			//save license
-			Properties.Settings.Default.License = RegistrationForm.userLicense.ToString();
-			//trial info
-			ApplyRestrictions();
+			
+			//if its not free, enforce some limits.
+			if (!RegistrationForm.isFreeSoftware)
+			{
+				//save license
+				Properties.Settings.Default.License = RegistrationForm.userLicense.ToString();
+				//trial info
+				ApplyRestrictions();
+			}
+			else
+			{
+				//if it IS free, remove licensing related stuff.
+				button6.Visible=false;
+			}
+			
+			
 			//automatic versioning
 			label1.Text = string.Format("Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 			//Properties.Settings.Default.Reload();
@@ -313,7 +361,9 @@ namespace FireCrypt
 			forceClose = false;
 			this.Hide();
 			if (e.Cancel)
-				notifyIcon1.ShowBalloonTip(5000, "FireCryptEx", "FireCryptEx is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
+			{
+				//notifyIcon1.ShowBalloonTip(5000, "FireCryptEx", "FireCryptEx is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
+			}
 		}
 		void Button4Click(object sender, EventArgs e)
 		{

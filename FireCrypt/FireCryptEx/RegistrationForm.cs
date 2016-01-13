@@ -1,4 +1,37 @@
-﻿
+﻿/*
+ * THIS PROGRAM AND ITS SOURCE CODE ARE PROVIDED TO YOU FREE OF CHARGE.
+ * YOU ARE PROHIBITED FROM REMOVING THIS NOTICE FROM THIS SOURCE DOCUMENT
+ * OR OTHERWISE MODIFYING IT.
+ * 
+ * FireCryptEx is a free (and by now, open-source) program that allows
+ * the user to create encrypted volumes to store files.
+ * 
+ * FireCryptEx was and continues to be developed by 0xFireball, and is
+ * the successor to another free program, FireCrypt.
+ * 
+ * About the Author:
+ * Pseudonym: 0xFireball, ExaPhaser
+ * Websites:
+ * http://acetylene.x10.bz
+ * http://omnibean.x10.bz
+ * http://exaphaser.x10.bz
+ * 
+ * Contact:
+ * 0xFireball on GitHub
+ * 0xFireball on GitLab
+ * exaphaser on GitLab
+ * 
+ * omnibean@outlook.com
+ * 
+ *   
+ * You are hereby allowed to make changes to the below source code and
+ * improve this program. In doing so, you are bound by the terms and 
+ * conditions of the AGPLv3 License.
+ * 
+ * /
+
+
+
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -25,6 +58,11 @@ namespace FireCrypt
 		/// 8: Normal mode
 		/// </summary>
 		public static int accessLevel = -1;
+		
+		//Once this is made open source, changing this to false violates the spirit of my decision to make this open source
+		public static bool isFreeSoftware = true;
+		
+		
 		public static License userLicense;
 		public RegistrationForm()
 		{
@@ -47,6 +85,12 @@ namespace FireCrypt
 	    }
 		public static bool VerifyLicense()
 		{
+			if (isFreeSoftware)
+			{
+				accessLevel = 8;
+				return true;
+			}
+			
 			if (!TryParseXml(Properties.Settings.Default.License))
 				Properties.Settings.Default.License = "<License>NoLicense</License>";
 			string publicKey = "MIIBKjCB4wYHKoZIzj0CATCB1wIBATAsBgcqhkjOPQEBAiEA/////wAAAAEAAAAAAAAAAAAAAAD///////////////8wWwQg/////wAAAAEAAAAAAAAAAAAAAAD///////////////wEIFrGNdiqOpPns+u9VXaYhrxlHQawzFOw9jvOPD4n0mBLAxUAxJ02CIbnBJNqZnjhE50mt4GffpAEIQNrF9Hy4SxCR/i85uVjpEDydwN9gS3rM6D0oTlF2JjClgIhAP////8AAAAA//////////+85vqtpxeehPO5ysL8YyVRAgEBA0IABIgqEwj4QDKhmA8wF8dpkgAp6cSS21eqzjpY0AsdvpLftjUi6M/OG5trUjZCmzhx/M1UxVnanhN/NI6t+4p7R7Y=";
