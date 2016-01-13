@@ -1,3 +1,7 @@
 # FireCryptEx
 
-The closed-source successor to FireCrypt.
+The successor to FireCrypt.
+
+Lots of new features, new UI, fresh updates.
+
+Stay tuned, and contribute!
