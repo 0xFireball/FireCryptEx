@@ -165,6 +165,11 @@
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Aluminum.PluginCore2\Aluminum.PluginCore2.csproj">
+      <Project>{d9ea6332-3798-468d-832f-ebb9af36d229}</Project>
+      <Name>Aluminum.PluginCore2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
