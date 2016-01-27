@@ -1,10 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-# SharpDevelop 5.1
-VisualStudioVersion = 12.0.20827.3
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireCryptEx", "FireCryptEx\FireCryptEx.csproj", "{92CA0BA0-7DD1-42E2-9F01-8B82AB9E3881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aluminum.PluginCore2", "Aluminum.PluginCore2\Aluminum.PluginCore2.csproj", "{D9EA6332-3798-468D-832F-EBB9AF36D229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,5 +17,12 @@ Global
 		{92CA0BA0-7DD1-42E2-9F01-8B82AB9E3881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CA0BA0-7DD1-42E2-9F01-8B82AB9E3881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92CA0BA0-7DD1-42E2-9F01-8B82AB9E3881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9EA6332-3798-468D-832F-EBB9AF36D229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9EA6332-3798-468D-832F-EBB9AF36D229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9EA6332-3798-468D-832F-EBB9AF36D229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9EA6332-3798-468D-832F-EBB9AF36D229}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

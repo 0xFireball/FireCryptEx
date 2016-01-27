@@ -71,11 +71,10 @@ namespace FireCrypt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
+        }
 		async void Button2Click(object sender, EventArgs e)
 		{
 			DialogResult dr = MessageBox.Show("Are you sure you want to remove the selected item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -123,7 +122,7 @@ namespace FireCrypt
 		
 		void MainFormLoad(object sender, EventArgs e1)
 		{
-			
+            
 			//if its not free, enforce some limits.
 			if (!RegistrationForm.isFreeSoftware)
 			{
@@ -508,9 +507,13 @@ namespace FireCrypt
 		{
 			//metroMenuStrip1.Visible = false;
 		}
-		
-	}
-	class CryptListItem
+
+        private void metroMenuStrip1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
+    class CryptListItem
 	{
 		private FireCryptVolume _internalVolume;
 		
