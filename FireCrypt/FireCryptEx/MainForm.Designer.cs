@@ -80,9 +80,12 @@ namespace FireCrypt
             this.button6 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
+            this.pluginListStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.getMorePluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cryptListMenu.SuspendLayout();
             this.notifyIconMenu.SuspendLayout();
             this.newOrExistingCtxM.SuspendLayout();
+            this.pluginListStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // cryptList
@@ -336,6 +339,21 @@ namespace FireCrypt
             this.button7.TabIndex = 22;
             this.button7.Text = "Plugins";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // pluginListStrip
+            // 
+            this.pluginListStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.pluginListStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.getMorePluginsToolStripMenuItem});
+            this.pluginListStrip.Name = "contextMenuStrip1";
+            this.pluginListStrip.Size = new System.Drawing.Size(198, 58);
+            // 
+            // getMorePluginsToolStripMenuItem
+            // 
+            this.getMorePluginsToolStripMenuItem.Name = "getMorePluginsToolStripMenuItem";
+            this.getMorePluginsToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.getMorePluginsToolStripMenuItem.Text = "Get More Plugins";
             // 
             // MainForm
             // 
@@ -377,6 +395,7 @@ namespace FireCrypt
             this.cryptListMenu.ResumeLayout(false);
             this.notifyIconMenu.ResumeLayout(false);
             this.newOrExistingCtxM.ResumeLayout(false);
+            this.pluginListStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,5 +404,7 @@ namespace FireCrypt
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private Button button7;
+        private ContextMenuStrip pluginListStrip;
+        private ToolStripMenuItem getMorePluginsToolStripMenuItem;
     }    
 }

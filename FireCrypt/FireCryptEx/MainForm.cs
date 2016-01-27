@@ -52,13 +52,16 @@ using Newtonsoft.Json.Serialization;
 using FireCrypt.Network;
 using FireCrypt.NewVolumeWizard;
 
+using PluginInterface;
+using Aluminum.PluginCore2.Types;
+using Aluminum.PluginCore2;
 
 namespace FireCrypt
 {
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class MainForm : MetroForm
+	public partial class MainForm : MetroForm, IPluginHost
 	{
 		FireCryptVolume currentVolume;
 		List<string> CryptListItemLocations;
@@ -71,11 +74,35 @@ namespace FireCrypt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+            PreparePlugins();
             //
             // TODO: Add constructor code after the InitializeComponent() call.
             //
         }
-		async void Button2Click(object sender, EventArgs e)
+        void PreparePlugins()
+        {
+            SuspendLayout();
+            //Call the find plugins routine, to search in our Plugins Folder
+            Global.Plugins.FindPluginsByPath(Application.StartupPath + @"\Plugins");
+            Global.Plugins.FindPluginsBySuffix(Application.StartupPath, ".Plugin.dll");
+
+            var availablePlugins = Global.Plugins.AvailablePlugins;
+            //Add each plugin to the treeview
+            foreach (AvailablePlugin plugin in availablePlugins)
+            {
+                var pluginBtn = new ToolStripMenuItem(plugin.Instance.Name);
+                plugin.Instance.Host = this;
+                plugin.Instance.HostObject = this;
+                pluginBtn.Click += (sender, e) => plugin.Instance.InvokePlugin();
+                pluginListStrip.Items.Add(pluginBtn);
+            }
+            if (availablePlugins.Count == 0)
+            {
+                button7.Visible = false;
+            }
+            ResumeLayout();
+        }
+        async void Button2Click(object sender, EventArgs e)
 		{
 			DialogResult dr = MessageBox.Show("Are you sure you want to remove the selected item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 			if (dr == DialogResult.Yes)
@@ -363,6 +390,10 @@ namespace FireCrypt
 			{
 				//notifyIcon1.ShowBalloonTip(5000, "FireCryptEx", "FireCryptEx is still running. Exit by right-clicking the icon, but first ensure that all vaults are locked.", ToolTipIcon.Info);
 			}
+            else
+            {
+                Global.Plugins.ClosePlugins();
+            }
 		}
 		void Button4Click(object sender, EventArgs e)
 		{
@@ -511,6 +542,14 @@ namespace FireCrypt
         private void metroMenuStrip1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Button btnSender = sender as Button;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            pluginListStrip.Show(ptLowerLeft);
         }
     }
     class CryptListItem
