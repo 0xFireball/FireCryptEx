@@ -121,14 +121,26 @@ namespace FireCrypt
 
         public static int SelectBufferSize()
         {
-            //High RAM (10+ GB) config:
-            //int bufSize = 134217728; //128 Mebibytes, 134.2 Megabytes
+            int bufSize = 1024;
+
+            //High RAM (16+ GB) config:
+            //bufSize = 1073741824; //1 GiB
+
+            //Medium-High RAM (10-16 GB) config:
+            //bufSize = 134217728; //128 Mebibytes, 134.2 Megabytes
 
             //Medium RAM (6-10 GB) config:
-            //int bufSize = 67108864; //64 MiB
+            //bufSize = 67108864; //64 MiB
 
             //Medium-low RAM (4-6 GB) config:
-            int bufSize = 33554432; //32 MiB
+            bufSize = 33554432; //32 MiB
+
+            //Low RAM (1-4 GB) config:
+            //bufSize = 8388608; //8 MiB
+
+            //Super-low RAM (<1 GB) config:
+            //bufSize = 2097152; //2 MiB
+
             return bufSize;
         }
 		
@@ -155,7 +167,7 @@ namespace FireCrypt
 					File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
 					break;
                 case "2.0":
-                    File.WriteAllText(ed + Path.DirectorySeparatorChar + ".fcx", "[FireCryptVolume]");
+                    File.WriteAllText(ed + Path.DirectorySeparatorChar + ".fcx2", "[FireCryptVolume]");
                     string unlLoc2 = ed;
                     string DecVolumeLocation2 = unlLoc2 + ".dec";
                     if (File.Exists(DecVolumeLocation2))
