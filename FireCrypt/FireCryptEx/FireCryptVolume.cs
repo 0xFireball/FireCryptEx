@@ -141,6 +141,7 @@ namespace FireCrypt
 					File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
 					break;
                 case "2.0":
+                    File.WriteAllText(ed + Path.DirectorySeparatorChar + ".fcx", "[FireCryptVolume]");
                     string unlLoc2 = ed;
                     string DecVolumeLocation2 = unlLoc2 + ".dec";
                     if (File.Exists(DecVolumeLocation2))
@@ -152,7 +153,7 @@ namespace FireCrypt
                     byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
                     byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
                                               //Buffered-read and encrypt and write to the output file
-                    using (var rawFileStream = File.Open(DecVolumeLocation2, FileMode.Create, FileAccess.ReadWrite))
+                    using (var rawFileStream = File.Open(DecVolumeLocation2, FileMode.Open, FileAccess.ReadWrite))
                     {
                         using (var encryptedFileStream = File.Open(volN, FileMode.Create, FileAccess.ReadWrite))
                         {
@@ -213,7 +214,7 @@ namespace FireCrypt
             byte[] encryptedFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
             byte[] decryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
             //Buffered-read and decrypt and write to the output file
-            using (var encryptedFileStream = File.Open(VolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+            using (var encryptedFileStream = File.Open(VolumeLocation, FileMode.Open, FileAccess.ReadWrite))
             {
                 using (var rawFileStream = File.Open(DecVolumeLocation, FileMode.Create, FileAccess.ReadWrite))
                 {
@@ -324,7 +325,7 @@ namespace FireCrypt
             byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
             byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
             //Buffered-read and encrypt and write to the output file
-            using (var rawFileStream = File.Open(DecVolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+            using (var rawFileStream = File.Open(DecVolumeLocation, FileMode.Open, FileAccess.ReadWrite))
             {
                 using (var encryptedFileStream = File.Open(VolumeLocation, FileMode.Create, FileAccess.ReadWrite))
                 {
