@@ -5,7 +5,7 @@ obj
 *.pfx
 
 #misc
-.userprefs
+*.userprefs
 
 # Windows image file caches
 Thumbs.db
