@@ -34,6 +34,7 @@
 /*
  */
 using System;
+using System.Linq;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
@@ -117,6 +118,19 @@ namespace FireCrypt
 				return _unlockPath;
 			}
 		}
+
+        public static int SelectBufferSize()
+        {
+            //High RAM (10+ GB) config:
+            //int bufSize = 134217728; //128 Mebibytes, 134.2 Megabytes
+
+            //Medium RAM (6-10 GB) config:
+            //int bufSize = 67108864; //64 MiB
+
+            //Medium-low RAM (4-6 GB) config:
+            int bufSize = 33554432; //32 MiB
+            return bufSize;
+        }
 		
 		public static void CreateNewVolume(string location, string label, string password, string version)
 		{
@@ -149,10 +163,11 @@ namespace FireCrypt
                         File.Delete(DecVolumeLocation2);
                     }
                     ZipFile.CreateFromDirectory(unlLoc2, DecVolumeLocation2);
-                    int bufSize = 134217728;
-                    byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
-                    byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
-                                              //Buffered-read and encrypt and write to the output file
+
+                    int bufSize = SelectBufferSize();
+
+                    byte[] rawFileBuffer = new byte[bufSize]; 
+                    byte[] encryptionBuffer1;
                     using (var rawFileStream = File.Open(DecVolumeLocation2, FileMode.Open, FileAccess.ReadWrite))
                     {
                         using (var encryptedFileStream = File.Open(volN, FileMode.Create, FileAccess.ReadWrite))
@@ -164,7 +179,8 @@ namespace FireCrypt
                                     int bytesRead;
                                     while ((bytesRead = rawFileReader.Read(rawFileBuffer, 0, bufSize)) > 0)
                                     {
-                                        encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.GetString(), password).GetBytes();
+                                        //Slice buffer to only data that was read
+                                        encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.Take(bytesRead).ToArray().GetString(), password).GetBytes();
                                         encryptedFileWriter.Write(encryptionBuffer1, 0, encryptionBuffer1.Length);
                                     }
                                 }
@@ -210,7 +226,7 @@ namespace FireCrypt
                 fw.RecursivelyWipeDirectory(unlockName);
                 Directory.Delete(unlockName, true);
             }
-            int bufSize = 134217728;
+            int bufSize = SelectBufferSize();
             byte[] encryptedFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
             byte[] decryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
             //Buffered-read and decrypt and write to the output file
@@ -225,7 +241,8 @@ namespace FireCrypt
                             int bytesRead;
                             while ((bytesRead = encryptedFileReader.Read(encryptedFileBuffer, 0, bufSize)) > 0)
                             {
-                                decryptionBuffer1 = PowerAES.Decrypt(encryptedFileBuffer.GetString(), key).GetBytes();
+                                //Slice buffer
+                                decryptionBuffer1 = PowerAES.Decrypt(encryptedFileBuffer.Take(bytesRead).ToArray().GetString(), key).GetBytes();
                                 rawFileWriter.Write(decryptionBuffer1, 0, decryptionBuffer1.Length);
                             }
                         }
@@ -321,7 +338,7 @@ namespace FireCrypt
             }
             ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
             fw.RecursivelyWipeDirectory(unlockName);
-            int bufSize = 134217728;
+            int bufSize = SelectBufferSize();
             byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
             byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
             //Buffered-read and encrypt and write to the output file
@@ -336,8 +353,10 @@ namespace FireCrypt
                             int bytesRead;
                             while ((bytesRead = rawFileReader.Read(rawFileBuffer, 0, bufSize)) > 0)
                             {
-                                encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.GetString(), key).GetBytes();
+                                //Slice buffer to only data that was read
+                                encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.Take(bytesRead).ToArray().GetString(), key).GetBytes();
                                 encryptedFileWriter.Write(encryptionBuffer1, 0, encryptionBuffer1.Length);
+                                encryptionBuffer1 = null;
                             }
                         }
                     }
