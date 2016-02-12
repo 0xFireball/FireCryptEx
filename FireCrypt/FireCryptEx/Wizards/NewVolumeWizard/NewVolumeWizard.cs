@@ -88,7 +88,7 @@ namespace FireCrypt.Wizards
 		{
 			VolumeName = wp.VolumeName;
 			Password = wp.Password;
-			VolumeVersion = "1.0";
+			VolumeVersion = wp.VolumeVersion;
 			VolumeLocation vlp = new VolumeLocation(VolumeName, Password, VolumeVersion);
 			ShowContent(vlp);
 			panel1.Controls.Find("finishBtn", true)[0].Click += (s,e)=> OnNextPage2Click(sender, e1, vlp);

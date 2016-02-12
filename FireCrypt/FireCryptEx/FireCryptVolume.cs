@@ -140,7 +140,40 @@ namespace FireCrypt
 					string dVolume = File.ReadAllBytes(DecVolumeLocation).GetString();
 					File.WriteAllBytes(volN, PowerAES.Encrypt(dVolume, password).GetBytes());
 					break;
-				default:
+                case "2.0":
+                    string unlLoc2 = ed;
+                    string DecVolumeLocation2 = unlLoc2 + ".dec";
+                    if (File.Exists(DecVolumeLocation2))
+                    {
+                        File.Delete(DecVolumeLocation2);
+                    }
+                    ZipFile.CreateFromDirectory(unlLoc2, DecVolumeLocation2);
+                    int bufSize = 134217728;
+                    byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
+                    byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
+                                              //Buffered-read and encrypt and write to the output file
+                    using (var rawFileStream = File.Open(DecVolumeLocation2, FileMode.Create, FileAccess.ReadWrite))
+                    {
+                        using (var encryptedFileStream = File.Open(volN, FileMode.Create, FileAccess.ReadWrite))
+                        {
+                            using (var rawFileReader = new BinaryReader(rawFileStream))
+                            {
+                                using (var encryptedFileWriter = new BinaryWriter(encryptedFileStream))
+                                {
+                                    int bytesRead;
+                                    while ((bytesRead = rawFileReader.Read(rawFileBuffer, 0, bufSize)) > 0)
+                                    {
+                                        encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.GetString(), password).GetBytes();
+                                        encryptedFileWriter.Write(encryptionBuffer1, 0, encryptionBuffer1.Length);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    File.Delete(DecVolumeLocation2);
+                    DeleteDirectory(unlLoc2);
+                    break;
+                default:
 					throw new InvalidOperationException("Cannot perform operation on unsupported volume version!");
 			}
 			string metaS = new JavaScriptSerializer().Serialize(volMeta);
