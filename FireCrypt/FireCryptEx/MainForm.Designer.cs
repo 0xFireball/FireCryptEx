@@ -90,6 +90,8 @@ namespace FireCrypt
             // 
             // cryptList
             // 
+            this.cryptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.cryptList.BackColor = System.Drawing.Color.Black;
             this.cryptList.ContextMenuStrip = this.cryptListMenu;
             this.cryptList.ForeColor = System.Drawing.Color.White;
@@ -97,7 +99,7 @@ namespace FireCrypt
             this.cryptList.ItemHeight = 19;
             this.cryptList.Location = new System.Drawing.Point(23, 86);
             this.cryptList.Name = "cryptList";
-            this.cryptList.Size = new System.Drawing.Size(163, 289);
+            this.cryptList.Size = new System.Drawing.Size(163, 327);
             this.cryptList.TabIndex = 0;
             this.cryptList.SelectedIndexChanged += new System.EventHandler(this.CryptListSelectedIndexChanged);
             // 
@@ -118,6 +120,7 @@ namespace FireCrypt
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(22, 439);
@@ -130,6 +133,7 @@ namespace FireCrypt
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(110, 439);
@@ -142,6 +146,7 @@ namespace FireCrypt
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(476, 450);
             this.label2.Name = "label2";
@@ -228,6 +233,7 @@ namespace FireCrypt
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(217, 447);
             this.label1.Name = "label1";
@@ -308,6 +314,7 @@ namespace FireCrypt
             // 
             // button6
             // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(461, 406);
@@ -347,7 +354,7 @@ namespace FireCrypt
             this.pluginListStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getMorePluginsToolStripMenuItem});
             this.pluginListStrip.Name = "contextMenuStrip1";
-            this.pluginListStrip.Size = new System.Drawing.Size(198, 58);
+            this.pluginListStrip.Size = new System.Drawing.Size(198, 30);
             // 
             // getMorePluginsToolStripMenuItem
             // 
@@ -359,7 +366,7 @@ namespace FireCrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderColor = System.Drawing.Color.DarkOrange;
+            this.BorderColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(654, 490);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label6);
@@ -378,18 +385,17 @@ namespace FireCrypt
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cryptList);
-            this.DisplayHeader = false;
-            this.DisplayTitle = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MetroBorderThickness = 4;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.None;
-            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "FireCryptEx";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.TitleColor = System.Drawing.Color.DarkOrange;
+            this.TitleColor = System.Drawing.Color.SteelBlue;
+            this.TitleFontStyle = new System.Drawing.Font("Segoe UI Light", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.cryptListMenu.ResumeLayout(false);
