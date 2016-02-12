@@ -32,6 +32,7 @@
 
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -49,14 +50,13 @@ namespace FireCrypt.NewVolumeWizard.UserControls
 		public string Password;
 		public string VolumeVersion;
 		
-		List<string> volumeVersions = new List<string>{"1.0","1.0+"};
+		List<string> volumeVersions = new List<string>{"2.0","1.0"};
 		public WelcomePage()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//

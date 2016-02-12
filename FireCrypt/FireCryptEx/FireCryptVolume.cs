@@ -165,7 +165,6 @@ namespace FireCrypt
 
         public void Unlock_2_0(string key)
         {
-            string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
             string unlockName = UnlockLocation + UID;
             string DecVolumeLocation = unlockName + ".dec";
             if (!Directory.Exists(UnlockLocation))
@@ -177,7 +176,28 @@ namespace FireCrypt
                 fw.RecursivelyWipeDirectory(unlockName);
                 Directory.Delete(unlockName, true);
             }
-            File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume, key).GetBytes());
+            int bufSize = 134217728;
+            byte[] encryptedFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
+            byte[] decryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
+            //Buffered-read and decrypt and write to the output file
+            using (var encryptedFileStream = File.Open(VolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+            {
+                using (var rawFileStream = File.Open(DecVolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    using (var encryptedFileReader = new BinaryReader(encryptedFileStream))
+                    {
+                        using (var rawFileWriter = new BinaryWriter(rawFileStream))
+                        {
+                            int bytesRead;
+                            while ((bytesRead = encryptedFileReader.Read(encryptedFileBuffer, 0, bufSize)) > 0)
+                            {
+                                decryptionBuffer1 = PowerAES.Decrypt(encryptedFileBuffer.GetString(), key).GetBytes();
+                                rawFileWriter.Write(decryptionBuffer1, 0, decryptionBuffer1.Length);
+                            }
+                        }
+                    }
+                }
+            }
             ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);
             fw.WipeFile(DecVolumeLocation, 1);
             _unlocked = true;
@@ -186,7 +206,6 @@ namespace FireCrypt
 
         public void Unlock_1_0(string key)
 		{
-			string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
 			string unlockName = UnlockLocation+UID;
 			string DecVolumeLocation = unlockName+".dec";
 			if (!Directory.Exists(UnlockLocation))
@@ -198,7 +217,8 @@ namespace FireCrypt
 				fw.RecursivelyWipeDirectory(unlockName);
 				Directory.Delete(unlockName,true);
 			}
-			File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume,key).GetBytes());
+            string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
+            File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume,key).GetBytes());
 			ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);
 			fw.WipeFile(DecVolumeLocation, 1);
 			_unlocked = true;
