@@ -155,12 +155,36 @@ namespace FireCrypt
 				case "1.0":
 					Unlock_1_0(key);
 					break;
-				default:
+                case "2.0":
+                    Unlock_2_0(key);
+                    break;
+                default:
 					throw new InvalidOperationException("Cannot perform operation on unsupported volume version!");
 			}		
 		}
-		
-		public void Unlock_1_0(string key)
+
+        public void Unlock_2_0(string key)
+        {
+            string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
+            string unlockName = UnlockLocation + UID;
+            string DecVolumeLocation = unlockName + ".dec";
+            if (!Directory.Exists(UnlockLocation))
+            {
+                Directory.CreateDirectory(UnlockLocation);
+            }
+            if (Directory.Exists(unlockName))
+            {
+                fw.RecursivelyWipeDirectory(unlockName);
+                Directory.Delete(unlockName, true);
+            }
+            File.WriteAllBytes(DecVolumeLocation, PowerAES.Decrypt(eVolume, key).GetBytes());
+            ZipFile.ExtractToDirectory(DecVolumeLocation, unlockName);
+            fw.WipeFile(DecVolumeLocation, 1);
+            _unlocked = true;
+            _unlockPath = unlockName;
+        }
+
+        public void Unlock_1_0(string key)
 		{
 			string eVolume = File.ReadAllBytes(VolumeLocation).GetString();
 			string unlockName = UnlockLocation+UID;
@@ -188,7 +212,10 @@ namespace FireCrypt
 				case "1.0":
 					Lock_1_0(key);
 					break;
-				default:
+                case "2.0":
+                    Lock_2_0(key);
+                    break;
+                default:
 					throw new InvalidOperationException("Cannot perform operation on unsupported volume version!");
 			}
 		}
@@ -230,10 +257,43 @@ namespace FireCrypt
             DeleteDirectory(unlockName);
         }
 		
-		private void Lock_1_BC(string key)
+		private void Lock_2_0(string key)
 		{
-			
-		}
+            string unlockName = UnlockLocation + UID;
+            string DecVolumeLocation = unlockName + ".dec";
+            if (File.Exists(DecVolumeLocation))
+            {
+                File.Delete(DecVolumeLocation);
+            }
+            ZipFile.CreateFromDirectory(unlockName, DecVolumeLocation);
+            fw.RecursivelyWipeDirectory(unlockName);
+            int bufSize = 134217728;
+            byte[] rawFileBuffer = new byte[bufSize]; //128 Mebibytes, 134.2 Megabytes
+            byte[] encryptionBuffer1; //128 Mebibytes, 134.2 Megabytes
+            //Buffered-read and encrypt and write to the output file
+            using (var rawFileStream = File.Open(DecVolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+            {
+                using (var encryptedFileStream = File.Open(VolumeLocation, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    using (var rawFileReader = new BinaryReader(rawFileStream))
+                    {
+                        using (var encryptedFileWriter = new BinaryWriter(encryptedFileStream))
+                        {
+                            int bytesRead;
+                            while ((bytesRead = rawFileReader.Read(rawFileBuffer, 0, bufSize)) > 0)
+                            {
+                                encryptionBuffer1 = PowerAES.Encrypt(rawFileBuffer.GetString(), key).GetBytes();
+                                encryptedFileWriter.Write(encryptionBuffer1, 0, encryptionBuffer1.Length);
+                            }
+                        }
+                    }
+                }
+            }
+            fw.WipeFile(DecVolumeLocation, 1);
+            _unlocked = false;
+            _unlockPath = null;
+            DeleteDirectory(unlockName);
+        }
 		
 		private dynamic TryLoadProperty(string key, dynamic defaultValue)
 		{
