@@ -56,8 +56,9 @@
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>..\libraries\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="EPFramework">
-      <HintPath>..\libraries\EPFramework.dll</HintPath>
+    <Reference Include="EPFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPFramework.1.1.1\lib\EPFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LibPowerCrypt4">
       <HintPath>..\libraries\LibPowerCrypt4.dll</HintPath>
