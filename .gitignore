@@ -3,7 +3,6 @@ bin
 obj
 .vs
 *.pfx
-*.snk
 
 #misc
 .userprefs
