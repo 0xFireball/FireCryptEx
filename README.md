@@ -12,5 +12,5 @@ Stay tuned, and contribute!
 - Create signing keys as per the build errors relating to signing keys. For example, if `demokey.snk` is missing, create this key (or disable signing).
 - Build  the project normally.
 
-# TODO
-- Implement a scalable, buffered version of the FireCrypt Volume. Currently in progress.
+# Features
+- The latest version implements a scalable buffered encryption method that can reliably encrypt arbitrarily-sized files with a memory usage of about 512 MiB. This implements two 256-MiB buffers, one for reading the file, and the other for encrypting/decrypting it. C#'s native garbage collection automatically frees unused memory. This has been tested on 10+ GiB files--FireCryptEx can perform all of these tasks with a memory usage of about 512 MB.
